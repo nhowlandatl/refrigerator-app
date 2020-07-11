@@ -4,10 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-const GOOGLE = {
-  clientID: process.env.GOOGLE_ID,
-  clientSecret: process.env.GOOGLE_SECRET
-}
+
 
 ReactDOM.render(
   <React.StrictMode>
