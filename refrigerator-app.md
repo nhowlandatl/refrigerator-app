@@ -6,7 +6,7 @@
 # 5. Open Postico, click refrigerator_app database and open SQL QUERY
 # 6. Enter copy/paste the following code to create a local database connection to refrigerator_app.
 
- 
+# COPY and PASTE into Postico
 INSERT INTO USERS
 (
 USER_ID, 

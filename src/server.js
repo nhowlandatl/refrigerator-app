@@ -1,4 +1,9 @@
-onst axios = require('axios');
+// remove dotenv when running on heroku
+require('dotenv').config();
+//const port = process.env.PORT || 8000;
+//const apiKey = process.env.API_KEY;
+
+const axios = require('axios');
 const express = require('express');
 const app = express();
 const session = require('express-session');
@@ -31,8 +36,31 @@ db.sequelize = sequelize;
 db.users = require('./models/users.js')(sequelize, Sequelize);
 module.exports = db;
 
+//Main API Function; returns JSON 
+function getSpoonProducts()
+{
+    //const key = '&Subscription-key=c455d00cb0f64e238a5282d75921f27e';
+    const header = 'Content-Type: application/json'
+    const url = 'https://api.spoonacular.com/food/products/search';
+    //const categories = ['steak', 'milk', 'bread', 'fruit', 'soup', 'pasta', 'vegetables'];
+    let products = null;
+    //const category = categories[randomInteger(categories)];
+    return axios
+        .get(
+            `ENTER CODE HERE`
+        )
+        .then((results) =>
+        {
+			
+				]);
+})
+		.then((results) =>
+{
+
+};
+
 // Hosting on port 5000
 app.listen(port, function ()
 {
     console.log('Listening on port ' + port)
-})
+});
