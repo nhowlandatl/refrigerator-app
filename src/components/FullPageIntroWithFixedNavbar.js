@@ -8,7 +8,7 @@ import recipeFeature from './assets/recipe-feature.jpg';
 import notificationFeature from './assets/notification-feature.jpg';
 import foodWasteFeature from './assets/food-waste-feature.jpg';
 import LoginModal from './LoginModal';
-import './Modal.css';
+import './FullPageIntroWithFixedNavbar.css';
 
 import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -92,8 +92,8 @@ class FullPageIntroWithFixedNavbar extends React.Component {
             <br/>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum non assumenda odit debitis, error quibusdam natus delectus perferendis ut numquam officia qui ea veritatis iste architecto eaque! Qui, repellendus nulla.</p>
             <MDBRow className="mx-auto my-auto" style={{paddingTop: '3rem'}}>
-                <MDBCol size="4">
-                  <MDBCard style={{ width: "22rem" }}>
+                <MDBCol xs="12" sm="12" md="4">
+                  <MDBCard>
                     <img className="img-fluid mx-auto" src={feature1} alt=""/>
                     <MDBCardBody>
                       <MDBCardTitle>Amazing feature 1</MDBCardTitle>
@@ -103,8 +103,8 @@ class FullPageIntroWithFixedNavbar extends React.Component {
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
-                <MDBCol size="4">
-                  <MDBCard style={{ width: "22rem" }}>
+                <MDBCol xs="12" sm="12" md="4">
+                  <MDBCard>
                     <img className="img-fluid mx-auto" src={feature2} alt=""/>
                     <MDBCardBody>
                       <MDBCardTitle>Amazing feature 2</MDBCardTitle>
@@ -114,8 +114,8 @@ class FullPageIntroWithFixedNavbar extends React.Component {
                     </MDBCardBody>
                   </MDBCard>
                 </MDBCol>
-                <MDBCol size="4">
-                  <MDBCard style={{ width: "22rem" }}>
+                <MDBCol xs="12" sm="12" md="4">
+                  <MDBCard>
                     <img className="img-fluid mx-auto" src={feature3} alt=""/>
                     <MDBCardBody>
                       <MDBCardTitle>Amazing feature 3</MDBCardTitle>

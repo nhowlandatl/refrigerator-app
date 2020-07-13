@@ -26,7 +26,7 @@ const LoginModal = (props) => {
    }
 
    // Eventually hit the backend to validate info, then redirect to main page
-   const handleSubmit = event => {
+   async function handleSubmit(event) {
       alert(email)
       event.preventDefault();
    }
