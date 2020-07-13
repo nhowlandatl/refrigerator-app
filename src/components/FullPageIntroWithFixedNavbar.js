@@ -7,9 +7,10 @@ import feature3 from './assets/ingredients_80px.png';
 import recipeFeature from './assets/recipe-feature.jpg';
 import notificationFeature from './assets/notification-feature.jpg';
 import foodWasteFeature from './assets/food-waste-feature.jpg';
-import LoginModal from './LoginModal'
+import LoginModal from './LoginModal';
+import './Modal.css';
 
-import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBMask, MDBView, MDBCardText, MDBCardImage, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle, MDBBtn  } from 'mdbreact';
+import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 class FullPageIntroWithFixedNavbar extends React.Component {
@@ -22,7 +23,7 @@ class FullPageIntroWithFixedNavbar extends React.Component {
     };
     this.onClick = this.onClick.bind(this); 
   }
-
+// Open login modal
   handleModalOpen = () => {
     this.setState((prevState) => {
        return{
@@ -30,7 +31,7 @@ class FullPageIntroWithFixedNavbar extends React.Component {
        }
     })
   }
-
+// Collapsable navbar when page is narrowed
   onClick() {
     this.setState({
       collapse: !this.state.collapse
@@ -64,7 +65,6 @@ class FullPageIntroWithFixedNavbar extends React.Component {
                       <a onClick={this.handleModalOpen} className="nav-link">
                             Log In
                         </a>
-                      {/* <MDBNavLink to="/login">Login</MDBNavLink>  */} 
                     </MDBNavItem>
                   </MDBNavbarNav>
                 </MDBCollapse>
@@ -169,20 +169,3 @@ class FullPageIntroWithFixedNavbar extends React.Component {
 }
 
 export default FullPageIntroWithFixedNavbar;
-
-// alt format
-{/* <MDBView src="https://mdbootstrap.com/img/Photos/Others/img%20(50).jpg">
-<MDBMask style={{paddingTop: '20rem', paddingLeft: '10rem', paddingRight: '10rem'}} overlay="black-light" className="flex-column text-white text-center" >
-  <MDBRow className="mx-auto">
-    <MDBCol size="6">
-      <h2>Preventing Food Waste and Saving You Money</h2>
-      <br />
-      <h5>Fridge Buddy keeps track of what's in your fridge, makes recipe suggestions, and can send notifications to your phone reminding you when items are about to spoil</h5>
-    </MDBCol>
-    <MDBCol size="6">
-      <img src={fridge} className="img-fluid" alt="" />
-    </MDBCol>
-  </MDBRow>
-  
-</MDBMask>
-</MDBView> */}
