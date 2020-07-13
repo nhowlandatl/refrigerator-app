@@ -1,38 +1,85 @@
-.App {
+.container {
+  display: flex; 
+  flex-direction: row;
+}
+
+#sideBar {
+  height: 100vh; 
+  width: 15vw; 
+  background-color: orange;
+  position: relative;
+}
+
+#appName {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 5em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#fridgeContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-image: url("/empty-fridge.jpg");
+  background-size: cover;
+  /* background-repeat: no-repeat; */
+}
+
+#topDiv {
+  margin: 1em 2em 1em 1em;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly
+}
+
+#userProfile {
+  display: flex; 
+  flex-direction: row; 
+}
+
+#expiringSoon {
+  /* height: 22vh; */
+  width: 100vh;
+  /* padding: 30px; */
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly;
+}
+
+.categoryItems {
+  /* height: 20vh; */
+  width: 100vh;
+  /* padding: 30px; */
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly;
+}
+
+.itemHeader {
+  margin-left: 2em;
+}
+
+.individualItems {
+  /* display: flex; 
+  flex-direction: column; */
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#itemName {
+  font-weight: bold;
+  margin: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#expDateSoon {
+  color: red;
+  margin: 5px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#expDate {
+  margin: 5px;
 }
