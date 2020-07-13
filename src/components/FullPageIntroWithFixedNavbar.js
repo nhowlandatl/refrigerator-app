@@ -7,6 +7,7 @@ import feature3 from './assets/ingredients_80px.png';
 import recipeFeature from './assets/recipe-feature.jpg';
 import notificationFeature from './assets/notification-feature.jpg';
 import foodWasteFeature from './assets/food-waste-feature.jpg';
+import LoginModal from './LoginModal'
 
 import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBMask, MDBView, MDBCardText, MDBCardImage, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle, MDBBtn  } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -16,9 +17,18 @@ class FullPageIntroWithFixedNavbar extends React.Component {
     super(props);
     this.state = {
       collapse: false,
-      isWideEnough: false
+      isWideEnough: false,
+      modalOpen: false
     };
-    this.onClick = this.onClick.bind(this);
+    this.onClick = this.onClick.bind(this); 
+  }
+
+  handleModalOpen = () => {
+    this.setState((prevState) => {
+       return{
+          modalOpen: !prevState.modalOpen
+       }
+    })
   }
 
   onClick() {
@@ -51,7 +61,10 @@ class FullPageIntroWithFixedNavbar extends React.Component {
                       <MDBNavLink to="#">Features</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
-                      <MDBNavLink to="#">Login</MDBNavLink>
+                      <a onClick={this.handleModalOpen} className="nav-link">
+                            Log In
+                        </a>
+                      {/* <MDBNavLink to="/login">Login</MDBNavLink>  */} 
                     </MDBNavItem>
                   </MDBNavbarNav>
                 </MDBCollapse>
@@ -146,6 +159,10 @@ class FullPageIntroWithFixedNavbar extends React.Component {
             </MDBRow>
           </MDBContainer>
         </main>
+        <LoginModal
+           modalOpen={this.state.modalOpen}
+           handleModalOpen={this.handleModalOpen}
+        />
       </div>
     );
   }
