@@ -15,7 +15,7 @@ rl.question('email? ', (email) => {
         rl.question('full name? ', (full_name) => {
             rl.close();
             // Create the album
-            db.users.findOrCreate({
+            db.users_model.findOrCreate({
                 where:
                     {
                     email: email,
