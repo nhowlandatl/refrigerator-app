@@ -1,7 +1,6 @@
 // refactor this to use dotenv
 // connect to database object
-const db = require('../models')
-const Users = db.tutorials;
+const db = require('../models/')
 
 // Readline for testing
 const readline = require('readline');
@@ -16,7 +15,7 @@ rl.question('email? ', (email) => {
         rl.question('full name? ', (full_name) => {
             rl.close();
             // Create the album
-            Users.findOrCreate({
+            db.users.findOrCreate({
                 where:
                     {
                     email: email,
@@ -32,17 +31,17 @@ rl.question('email? ', (email) => {
  })
 
 
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log('Connection has been established successfully.');
-//   })
-//   .catch(err => {
-//     console.error('Unable to connect to the database:', err);
-//   });
+db.sequelize
+  .authenticate()
+  .then(() => {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(err => {
+    console.error('Unable to connect to the database:', err);
+  });
 
 
-// working code
+// working code to write to database
 // const { Sequelize } = require('sequelize');
 
 // refactor this to use dotenv
