@@ -1,13 +1,17 @@
 import React from 'react';
-import Fridge from './components/Fridge.jsx'
 import './App.css';
-// import AddItems from './components/AddItems.jsx';
+import Login from './components/login';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNavbar';
+// import LoginModal from './components/LoginModal' 
 
 function App() {
   return (
     <div className="App">
-      {/* <AddItems/> */}
-      <Fridge />
+      <Login />
+      <BrowserRouter>
+        <FullPageIntroWithFixedNavbar/> 
+      </BrowserRouter>
     </div>
   );
 }
