@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import Login from './components/login';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNavbar';
 // import LoginModal from './components/LoginModal' 
@@ -7,9 +8,9 @@ import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNav
 function App() {
   return (
     <div className="App">
+      <Login />
       <BrowserRouter>
-        <FullPageIntroWithFixedNavbar/>
-         
+        <FullPageIntroWithFixedNavbar/> 
       </BrowserRouter>
     </div>
   );

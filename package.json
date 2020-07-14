@@ -6,6 +6,9 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "cors": "^2.8.5",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.0",
     "dotenv": "^8.2.0",
@@ -39,5 +42,7 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy":"http://localhost:5000"
+  
 }
