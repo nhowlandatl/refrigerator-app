@@ -13,7 +13,7 @@ function AddItems() {
             <div className={`modalBackground modalShowing-${modalState}`}>
               <div className="modalInner">
                 <div className="modalContent">
-                    <button>Return to Fridge</button>
+                    <button onClick={() => toggleModalState()}>Return to Fridge</button>
                     {/* Search Box to search for items */}
                     <h3>Search grocery items to add to your fridge</h3>
                     <form>
