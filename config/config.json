@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "wanker",
+    "database": "refrigerator_app",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "refrigerator_app",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

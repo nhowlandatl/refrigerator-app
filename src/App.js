@@ -1,12 +1,17 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Login from './components/login';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNavbar';
+// import LoginModal from './components/LoginModal' 
 
 function App() {
   return (
     <div className="App">
       <Login />
+      <BrowserRouter>
+        <FullPageIntroWithFixedNavbar/> 
+      </BrowserRouter>
     </div>
   );
 }
