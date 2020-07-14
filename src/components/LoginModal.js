@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { MDBBtn } from 'mdbreact'; 
 
-// Using react hooks here, I think
+// Using react hooks here to pass in the open/close status for this modal
 
 // Take in open/close toggle prop from main page
 const LoginModal = (props) => { 
@@ -25,11 +25,18 @@ const LoginModal = (props) => {
       setPassword(e.target.value)
    }
 
-   // Eventually hit the backend to validate info, then redirect to main page
+   // Hit the backend to validate info/check if user exists, then redirect to dashboard
+   // Needs to be an axios.post using what was collected here
    async function handleSubmit(event) {
       alert(email)
       event.preventDefault();
+      // this could retrieve a user object from the login, and send that to your backend. Have redux status of "isLoggedIn = true" -> then save the user info to redux store. 
+      // Need to have passport session
+      var res = await fetch('/ping')
+      var data = await res.json()
+      console.log(data);
    }
+   
    // Show the login div when "Log In" is closed on nav bar
    return (
       <div>
@@ -75,84 +82,3 @@ const LoginModal = (props) => {
 }
 
 export default LoginModal;
-
-
-// Email:
-//                      <input
-//                         type="text"
-//                         value={email}
-//                         onChange={handleChangeEmail}
-//                      />
-//                   Password:
-//                      <input
-//                         type="text"
-//                         value={password}
-//                         onChange={handleChangePassword}
-//                      />
-
-
-// import React, { Component } from 'react'
-// // import { axios } from "axios"; 
-// import { MDBIcon, MDBBtn, MDBModal, MDBModalHeader } from 'mdbreact';
-
-// class LoginModal extends Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {
-//             email: '',
-//             password: '',
-//             modal14: false
-//         }
-//     }
-
-//     // Local state to handle input
-//     handleChange = (event) => {
-//         this.setState({[event.target.name]: event.target.value})
-//         console.log(event.target.value)
-//     }
-
-//     // Toggle state on/off for login modal
-//     toggle = nr => () => {
-//         let modalNumber = 'modal' + nr
-//         this.setState({
-//           [modalNumber]: !this.state[modalNumber]
-//         });
-//     }
-
-//     // Work in progress. Will submit info to database.
-//     handleSubmit = (event) => {
-//         event.preventDefault()
-//         console.log(this.state)
-//         // axios.post('/', {
-//         //     email: this.state.email
-
-//         // })
-//     }
-
-//     // Making login a pretty modal popup
-//     render() {
-//         return (
-//             <form onSubmit={this.handleSubmit}>
-//                 <MDBBtn color="primary" onClick={this.toggle(14)}>Click here to log on</MDBBtn>
-//                 <MDBModal isOpen={this.state.modal14} centered>
-//                     <MDBBtn color="primary" onClick={this.toggle(14)}>Close</MDBBtn>
-//                     <MDBModalHeader >
-//                         <MDBIcon icon='utensils' className="cyan-text" style={{marginRight: "1rem"}}/>
-                           
-//                     </MDBModalHeader>
-                   
-                    
-//                     <br></br>
-                    
-//                 </MDBModal>
-
-//                 <input type="email" name="email" value={this.state.email} required onChange={this.handleChange}/>
-//                 <input type="password" name="password" value={this.state.password} required onChange={this.handleChange}/>
-//                 <button type="submit">Submit</button>
-
-//             </form>
-//         )
-//     }
-// }
-
-// export default LoginModal
