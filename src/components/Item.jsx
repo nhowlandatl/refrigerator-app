@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 
 export class Item extends Component {
     constructor(props){
@@ -52,7 +53,7 @@ export class Item extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="categoryItems">
                 <div className="individualItems">
                     <img src={this.state.items[0].image} alt="food"/>
                     <br/>
@@ -60,8 +61,16 @@ export class Item extends Component {
                     <br/>
                     <span id="expDateSoon">Exp: {this.state.items[0].expDate}</span>
                     <br/>
-                    <button>Remove</button>
-                    {/* <Button variant="contained" color="primary">Remove</Button> */}
+                    <Button variant="contained" color="primary">Remove</Button>
+                </div>
+                <div className="individualItems">
+                    <img src={this.state.items[1].image} alt="food"/>
+                    <br/>
+                    <span id="itemName">{this.state.items[1].itemName}</span>
+                    <br/>
+                    <span id="expDateSoon">Exp: {this.state.items[1].expDate}</span>
+                    <br/>
+                    <Button variant="contained" color="primary">Remove</Button>
                 </div>
             </div>
         )
