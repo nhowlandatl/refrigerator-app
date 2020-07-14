@@ -43,15 +43,16 @@ class FullPageIntroWithFixedNavbar extends React.Component {
       <div>
         <header>
           <Router>
-            <MDBNavbar color="indigo" dark expand="md" fixed="top" className="justify-content-center">  
-              <MDBNav className="justify-content-center">
-              <MDBNavbarBrand href="/">
+            <MDBNavbar color="green" dark expand="md" fixed="top">  
+              <MDBNavbarBrand className="lobster" href="/">
+                  FridgeBuddy
                   <img
                     alt=""
                     src={logo}
                     className="d-inline-block"
                   />{' '}
                 </MDBNavbarBrand>
+                <MDBNav className="justify-content-center">
                 {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
                 <MDBCollapse isOpen={this.state.collapse} navbar>
                   <MDBNavbarNav left>

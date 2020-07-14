@@ -3,3 +3,9 @@
     border: 2px solid #fff;
     text-align: center;
   }
+
+.lobster {
+  font-family: 'Lobster', cursive;
+  text-align: left;
+  font-size: 3em;
+}
