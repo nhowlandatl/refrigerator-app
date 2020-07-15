@@ -4,7 +4,7 @@ export class Dashboard extends Component {
     render() {
         return (
             <div>
-                This is the fridge dashboard
+                Register here
             </div>
         )
     }

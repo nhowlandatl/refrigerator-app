@@ -1,5 +1,5 @@
-// refactor this to use dotenv
-// connect to database object
+// Need to refactor this to use dotenv
+// Connect to database object
 const db = require('../models/')
 
 // Readline for testing

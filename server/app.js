@@ -3,9 +3,46 @@ const app = express();
 const passport = require("passport");
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const db = require('../models');
-const cors = require("cors");
 const flash = require('express-flash');
 const session = require('express-session');
+require('dotenv').config();
+const cors = require('cors');
+
+//  doesnt work
+// app.use('*', function(req, res, next) {
+// //replace localhost:8080 to the ip address:port of your server
+// res.header("Access-Control-Allow-Origin", "http://localhost:8080");
+// res.header("Access-Control-Allow-Headers", "X-Requested-With");
+// res.header('Access-Control-Allow-Headers', 'Content-Type');
+// res.header('Access-Control-Allow-Credentials', true);
+// next(); 
+// });
+
+//enable pre-flight
+// app.options('*', cors()); 
+
+// IP's allowed all access this server
+// let whitelist = ['http://localhost:3000', 'http://127.0.0.1:3000'];
+
+// let corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error('Not allowed by CORS'));
+//     }
+//   }
+// };
+
+// // Cross-Origin Resource Sharing
+// app.use(cors(corsOptions));
+
+// Cors
+const corsOptions = {
+    credentials: true,
+  };
+
+  app.use(cors(corsOptions));
 
 let user = {};
 
@@ -42,6 +79,7 @@ passport.authenticate('google', { scope: ['profile', 'email'] }))
 app.get('/auth/google/callback',
 passport.authenticate('google', { failureRedirect: '/login' }),
 function (req, res) {
+    res.redirect("http://localhost:3000/");
     res.json(user);
 });
 
@@ -56,9 +94,6 @@ app.get('/logout', (req, res) => {
     res.redirect("/");
 });
 
-// const PORT = 5000
-// app.listen(PORT);
-
-app.listen(5000, () => {
+app.listen(3001, () => {
     console.log('Hello master');
 })

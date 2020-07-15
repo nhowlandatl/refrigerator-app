@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { MDBBtn } from 'mdbreact'; 
-
+import axios from 'axios';
+import { Link } from 'react-router-dom'
 // Using react hooks here to pass in the open/close status for this modal
 
 // Take in open/close toggle prop from main page
@@ -28,19 +29,24 @@ const LoginModal = (props) => {
    // Hit the backend to validate info/check if user exists, then redirect to dashboard
    // Needs to be an axios.post using what was collected here
    async function handleSubmit(event) {
-      alert(email)
-      event.preventDefault();
+      console.log(event)
       // this could retrieve a user object from the login, and send that to your backend. Have redux status of "isLoggedIn = true" -> then save the user info to redux store. 
-      // Need to have passport session
-      var res = await fetch('/ping')
-      var data = await res.json()
-      console.log(data);
+      // Need to have passport session... 
+      axios.post('/login', {
+         email: email,
+         password: password
+      })
    }
 
-   async function googleSubmit() {
-      
-      
-   }
+   // async function googleSubmit() {
+   //    axios.get('auth/google')
+   //    .then(function (response) {
+   //      console.log(response);
+   //    })
+   //    .catch(function (error) {
+   //      console.log(error);
+   //    });
+   // }
    
    // Show the login div when "Log In" is closed on nav bar
    return (
@@ -73,9 +79,6 @@ const LoginModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                {/* Make this a conditional render; if something is typed in both the login/password box, show this */}
-               <MDBBtn variant="primary" onClick={googleSubmit}>
-                  Log in with Google
-               </MDBBtn>
                <MDBBtn variant="primary" disabled={!validateForm()} type="submit">
                   Login
                </MDBBtn>
