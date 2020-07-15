@@ -4,6 +4,7 @@ import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { MDBBtn } from 'mdbreact'; 
 import axios from 'axios';
 // Using react hooks here to pass in the open/close status for this modal
+// Rename to RegisterModal later
 
 // Take in open/close toggle prop from main page
 const LoginModal = (props) => { 
@@ -28,10 +29,12 @@ const LoginModal = (props) => {
    // Hit the backend to validate info/check if user exists, then redirect to dashboard
    // Needs to be an axios.post using what was collected here
    async function handleSubmit(event) {
-      console.log(event)
+      event.preventDefault();
+      console.log(email)
+      console.log(password)
       // this could retrieve a user object from the login, and send that to your backend. Have redux status of "isLoggedIn = true" -> then save the user info to redux store. 
       // Need to have passport session... 
-      axios.post('/login', {
+      axios.post('/register', {
          email: email,
          password: password
       })
@@ -53,7 +56,7 @@ const LoginModal = (props) => {
          <Modal show={props.modalOpen} onHide={props.handleModalOpen}>
          <form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-               <Modal.Title>Login</Modal.Title>
+               <Modal.Title>Register</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                <FormGroup controlId="email" bsSize="large">

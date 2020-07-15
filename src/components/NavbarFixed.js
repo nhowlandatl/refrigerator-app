@@ -50,7 +50,7 @@ export class NavbarFixed extends Component {
                     </MDBNavItem>
                     <MDBNavItem>
                       <a onClick={this.handleModalOpen} className="nav-link">
-                        Log In
+                        Register
                       </a>
                     </MDBNavItem>
                   </MDBNavbarNav>

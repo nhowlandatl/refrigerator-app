@@ -52,6 +52,22 @@ passport.use(new LocalStrategy(
     }
   ));
 
+// Check to authenticate if a user is logged in. If not, redirects user to login page
+function checkAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next()
+	}
+	res.redirect('/login')
+};
+// Make sure no uers dont go back to the login page if they are already authenticated
+function checkNotAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+    // return res.redirect('/dashboard')
+    console.log('hello')
+	}
+	// next() 
+};
+
 // placeholder 
 //   passport.use(new LocalStrategy(
 //     function(email, password, cb) {
@@ -65,7 +81,6 @@ passport.use(new LocalStrategy(
 //   ));
   
 // Routes
-
 // Login for existing user
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
@@ -78,13 +93,13 @@ app.post('/login',
 	try {
 		const hashedPassword = await bcrypt.hash(req.body.password, 10) //includes await since we are using async
         db.users.create({
-            username: req.body.name,
-            email: req.body.email,
-			password: hashedPassword,
+          // username: req.body.name,
+          email: req.body.email,
+			    password: hashedPassword,
         })
         .then(newUser => {
-        console.log(`New user ${newUser.username}, with id ${newUser.id} has been created.`);
-        res.redirect('/login')//If everthing is correct, redirect user to login page to continue loggin in
+        console.log(`New user ${newUser.email}, with id ${newUser.password} has been created.`);
+        // res.redirect('/login')//If everthing is correct, redirect user to login page to continue loggin in 
         }).catch(e => {
             res.render('register', {error: 'This email already has a user account.'})
         })
