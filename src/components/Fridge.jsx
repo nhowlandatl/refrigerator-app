@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 //Import React components
 import Item from './Item';
+import AddItems from './AddItems';
 
 function handleClick(e) {
     e.preventDefault();
@@ -24,7 +25,6 @@ export class Fridge extends Component {
                 <div id="sideBar">
                     <h1 id="appName">FridgeBuddy</h1>
                     <List>
-                        <a href=""><ListItem><Button onClick={handleClick} variant="contained" color="primary">Add Items</Button></ListItem></a>
                         <a href="..."><ListItem>Fridge</ListItem></a>
                         <a href="..."><ListItem>Freezer</ListItem></a>
                         <a href="..."><ListItem>Pantry</ListItem></a>
@@ -44,6 +44,7 @@ export class Fridge extends Component {
                             <Avatar></Avatar>
                         </div>
                     </div>
+                    <AddItems/>
 {/* Expiring Soon Section */}
                 <h3 className="itemHeader" style={{color: "red"}}>Expiring Soon:</h3>
                     <div id="expiringSoon">

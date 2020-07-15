@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import Button from '@material-ui/core/Button';
 
 function AddItems() {
     const [modalState, setModalState] = useState(false);
@@ -9,7 +10,7 @@ function AddItems() {
 
     return (
         <div>
-    <button onClick={() => toggleModalState()}>Add Items to Fridge</button>
+    <Button variant="contained" color="primary" onClick={() => toggleModalState()}>Add Items to Fridge</Button>
             <div className={`modalBackground modalShowing-${modalState}`}>
               <div className="modalInner">
                 <div className="modalContent">
@@ -30,22 +31,3 @@ function AddItems() {
 }
 
 export default AddItems
-
-
-// export class AddItems extends Component {
-//         render() {
-//         return (
-//             <div style={{textAlign: "center"}}>
-//                 <h1>Add Groceries To Fridge</h1>
-//                 <form>
-//                     <label>
-//                         <input type="text" name="name" />
-//                     </label>
-//                     <input type="submit" value="Submit" />
-//                     </form>
-//             </div>
-//         )
-//     }
-// }
-
-// export default AddItems
