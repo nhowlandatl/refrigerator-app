@@ -36,6 +36,11 @@ const LoginModal = (props) => {
       var data = await res.json()
       console.log(data);
    }
+
+   async function googleSubmit() {
+      
+      
+   }
    
    // Show the login div when "Log In" is closed on nav bar
    return (
@@ -68,6 +73,9 @@ const LoginModal = (props) => {
             </Modal.Body>
             <Modal.Footer>
                {/* Make this a conditional render; if something is typed in both the login/password box, show this */}
+               <MDBBtn variant="primary" onClick={googleSubmit}>
+                  Log in with Google
+               </MDBBtn>
                <MDBBtn variant="primary" disabled={!validateForm()} type="submit">
                   Login
                </MDBBtn>

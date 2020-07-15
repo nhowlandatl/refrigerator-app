@@ -1,28 +1,64 @@
 const express = require("express");
-const bodyParser = require("body-parser");
-// const cors = require("cors"); 
-
 const app = express();
+const passport = require("passport");
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const db = require('../models');
+const cors = require("cors");
+const flash = require('express-flash');
+const session = require('express-session');
 
-// var corsOptions = {
-//   origin: "http://localhost:8081"
-// };
+let user = {};
 
-// app.use(cors(corsOptions)); 
+app.use(passport.initialize());
+app.use(passport.session());
 
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// simple route
-app.get("/ping", (req, res) => {
-  res.json({ message: "Pong" });
+passport.serializeUser(function(user, done) {
+    done(null, user);
 });
 
-// set port, listen for requests
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+passport.deserializeUser(function(user, done) {
+    done(null, user);
 });
+
+// Google strategy
+passport.use(new GoogleStrategy({
+    clientID: process.env.clientID,
+    clientSecret: process.env.clientSecret,
+    callbackURL: "http://localhost:3000/auth/google/callback"
+  },
+  function (accessToken, refreshToken, profile, done) {
+    db.users.findOrCreate({ where: { email: profile.emails[0].value, userName: profile.displayName } }).then(user => {
+        if (user) {
+            return done(null, user[0]);
+        }
+    })
+    console.log(profile);
+    }));
+
+// Routes
+app.get('/auth/google',
+passport.authenticate('google', { scope: ['profile', 'email'] }))
+
+app.get('/auth/google/callback',
+passport.authenticate('google', { failureRedirect: '/login' }),
+function (req, res) {
+    res.json(user);
+});
+
+app.get("/user", (req, res) => {
+    console.log("getting user data!");
+    res.send(user);
+});
+
+app.get('/logout', (req, res) => {
+    console.log("logging out");
+    user = {};
+    res.redirect("/");
+});
+
+// const PORT = 5000
+// app.listen(PORT);
+
+app.listen(5000, () => {
+    console.log('Hello master');
+})
