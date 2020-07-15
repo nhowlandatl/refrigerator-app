@@ -3,7 +3,6 @@ import Modal from 'react-bootstrap/Modal';
 import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { MDBBtn } from 'mdbreact'; 
 import axios from 'axios';
-import { Link } from 'react-router-dom'
 // Using react hooks here to pass in the open/close status for this modal
 
 // Take in open/close toggle prop from main page
