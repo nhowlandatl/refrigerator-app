@@ -1,38 +1,135 @@
-.App {
+#dashContainer {
+  display: flex; 
+  flex-direction: row;
+  background-image: url("/light_mode_option2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#sideBar {
+  height: 100vh; 
+  width: 15vw; 
+  background-color: #78C257;
+  position: relative;
+}
+
+#sideBarLinks li{
+  font-size: 25px;
+  color: black;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+#appName {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 5em;
+}
+
+ul {
+  list-style-type: none;
+}
+
+#fridgeContainer {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  /* background-image: url("/light_mode.jpg");
+  background-size: cover; */
+  /* background-repeat: no-repeat; */
+}
+
+#topDiv {
+  margin: 1em 2em 1em 1em;
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly
+}
+
+#userProfile {
+  display: flex; 
+  flex-direction: row; 
+}
+
+#expiringSoon {
+  /* height: 22vh; */
+  width: 100vh;
+  /* padding: 30px; */
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly;
+}
+
+.categoryItems {
+  /* height: 20vh; */
+  width: 100vh;
+  /* padding: 30px; */
+  display: flex; 
+  flex-direction: row; 
+  justify-content: space-evenly;
+}
+
+.itemHeader {
+  margin-left: 2em;
+}
+
+.individualItems {
+  /* display: flex; 
+  flex-direction: column; */
+  background-color: rgba(255, 255, 255);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
+#itemName {
+  font-weight: bold;
+  margin: 5px;
+}
+
+#expDateSoon {
+  color: red;
+  margin: 5px;
+}
+
+#expDate {
+  margin: 5px;
+}
+
+.modalBackground {
+  opacity: 0;
   pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0, 0.7);
+  display: flex;
+
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.modalShowing-true {
+  opacity: 1;
+  pointer-events: visible;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.modalInner {
+  background:#78C257;
+  width:900px;
+  height: 900px;
+  max-width: calc(100% - 60px);
+  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.dark-mode {
+  background-image: url("/dark_mode_option2.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
