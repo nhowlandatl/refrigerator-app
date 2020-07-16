@@ -46,6 +46,6 @@ module.exports = sequelize => {
     comment: "",
     indexes: []
   };
-  const CategoriesModel = sequelize.define("categories_model", attributes, options);
+  const CategoriesModel = sequelize.define("categories", attributes, options);
   return CategoriesModel;
 };
