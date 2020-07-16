@@ -40,6 +40,7 @@ class SearchForm extends Component {
           <br />
           <br />
           <br />
+          <br />
           <h2>Search for a food item to add to your fridge!</h2>
           <form
             className="needs-validation"
