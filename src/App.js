@@ -11,14 +11,14 @@ import NavbarFixed from './components/NavbarFixed';
 function App() {
   return (
     <div className="App">
-      <Fridge />
-      {/* <Login />
+      {/* <Fridge /> */}
+      <Login />
       <BrowserRouter>
         <NavbarFixed/>
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
         <Route path="/dashboard" component={Dashboard} />
         <FullPageIntroWithFixedNavbar/> 
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
