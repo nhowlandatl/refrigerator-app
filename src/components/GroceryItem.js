@@ -17,7 +17,7 @@ class GroceryItem extends Component {
         <div style={{display: 'flex', justifyContent: 'center'}}>
           {this.props.ingredients.length >= 1 &&
             // Generate clear screen button after recipes are generated
-            <Button variant="outline-secondary" onClick={this.handleSubmit}>Click to find recipes</Button>
+            <Button variant="outline-green" onClick={this.handleSubmit}>Click to find recipes</Button>
           }  
         </div>
       )

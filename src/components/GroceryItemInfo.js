@@ -33,7 +33,7 @@ class GroceryItemInfo extends Component {
             <div>
                 {this.props.recipeInfo && 
                     <MDBModal isOpen={this.state.modal14} centered>
-                        <MDBBtn data-dismiss="modal" onClick={()=>this.onCloseModal()}>Close</MDBBtn>
+                        <MDBBtn color="green" data-dismiss="modal" onClick={()=>this.onCloseModal()}>Close</MDBBtn>
                         <MDBModalHeader >
                             <MDBIcon icon='utensils' className="cyan-text" style={{marginRight: "1rem"}}/>
                             {recipeTitle}

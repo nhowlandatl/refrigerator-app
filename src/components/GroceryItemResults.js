@@ -27,7 +27,7 @@ class GroceryItemResults extends Component {
                     <img src={recipe.image}/>
                     {this.props.recipes.length > 1 &&
                       // Conditionally generate Recipe info button after recipe titles area rendered
-                      <Button variant="outline-secondary" onClick={() => this.handleRecipe(recipe.id)}>Get recipe details</Button>
+                      <Button variant="outline-green" onClick={() => this.handleRecipe(recipe.id)}>Get recipe details</Button>
                     }
                   </MDBCard>
                 </MDBCol>

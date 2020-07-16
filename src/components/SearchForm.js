@@ -57,7 +57,7 @@ class SearchForm extends Component {
               placeholder="Your ingredient"
               required
               >
-              <MDBBtn color="secondary" className="m-1 px-3 py-2" type="submit">Search for food item</MDBBtn>
+              <MDBBtn color="green" className="m-1 px-3 py-2" type="submit">Search for food item</MDBBtn>
                <div className="invalid-tooltip">
                 Please enter a food item.
                 </div>
