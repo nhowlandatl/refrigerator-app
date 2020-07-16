@@ -9,11 +9,11 @@ import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNav
 function App() {
   return (
     <div className="App">
-      {/* <Fridge /> */}
-      <Login />
+      <Fridge />
+      {/* <Login />
       <BrowserRouter>
         <FullPageIntroWithFixedNavbar/> 
-      </BrowserRouter>
+      </BrowserRouter> */}
     </div>
   );
 }

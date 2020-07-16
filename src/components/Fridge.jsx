@@ -9,6 +9,13 @@ import ListItem from '@material-ui/core/ListItem';
 import Item from './Item';
 import AddItems from './AddItems';
 
+//Working on a Dark Mode
+// function toggleDarkMode() {
+//     var element = document.getElementById("dashContainer");
+//     element.classList.toggle("dark-mode");
+//     element.style.backgroundImage = 'url("dark_mode_option2.jpg")';
+//  }
+
 function handleClick(e) {
     e.preventDefault();
     console.log('The link was clicked.');
@@ -20,21 +27,23 @@ export class Fridge extends Component {
 	// }
     render() {
         return (
-            <div className="container">
+            <div id="dashContainer">
 {/* Left menu */}
                 <div id="sideBar">
+                    {/* <button onClick={() => toggleDarkMode()}>Toggle dark mode</button> */}
                     <h1 id="appName">FridgeBuddy</h1>
-                    <List>
-                        <a href="..."><ListItem>Fridge</ListItem></a>
-                        <a href="..."><ListItem>Freezer</ListItem></a>
-                        <a href="..."><ListItem>Pantry</ListItem></a>
+                    <ul id="sideBarLinks">
+                        <a href="..."><li>Fridge</li></a>
+                        <a href="..."><li>Freezer</li></a>
+                        <a href="..."><li>Pantry</li></a>
                         {/* <a href="..."><li>Get Recipes</li></a> */}
-                    </List>
+                    </ul>
                 </div>
 {/* Main Container */}
                 <div id="fridgeContainer">
 {/* Top Div with search bar and optional login info */}
                     <div id="topDiv">
+                    <AddItems/>
                         <div id="searchBar">
                             <Input></Input>
                             <Button variant="contained" color="secondary">Search Your Fridge</Button>
@@ -44,7 +53,6 @@ export class Fridge extends Component {
                             <Avatar></Avatar>
                         </div>
                     </div>
-                    <AddItems/>
 {/* Expiring Soon Section */}
                 <h3 className="itemHeader" style={{color: "red"}}>Expiring Soon:</h3>
                     <div id="expiringSoon">

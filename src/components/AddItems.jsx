@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 
 function AddItems() {
+    
     const [modalState, setModalState] = useState(false);
 
     const toggleModalState = () => {
@@ -9,12 +10,12 @@ function AddItems() {
     }
 
     return (
-        <div>
+        <div style={{textAlign: "center"}}>
     <Button variant="contained" color="primary" onClick={() => toggleModalState()}>Add Items to Fridge</Button>
             <div className={`modalBackground modalShowing-${modalState}`}>
               <div className="modalInner">
                 <div className="modalContent">
-                    <button onClick={() => toggleModalState()}>Return to Fridge</button>
+                    <button onClick={() => toggleModalState()}>Exit</button>
                     {/* Search Box to search for items */}
                     <h3>Search grocery items to add to your fridge</h3>
                     <form>
