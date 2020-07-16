@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from './components/login';
-import Fridge from './components/Fridge';
+// import Fridge from './components/Fridge';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNavbar';
 import Dashboard from './components/Dashboard';
