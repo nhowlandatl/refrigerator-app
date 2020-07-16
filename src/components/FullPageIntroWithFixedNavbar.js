@@ -14,64 +14,13 @@ import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBC
 import { BrowserRouter as Router } from 'react-router-dom';
 
 class FullPageIntroWithFixedNavbar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      collapse: false,
-      isWideEnough: false,
-      modalOpen: false
-    };
-    this.onClick = this.onClick.bind(this); 
-  }
-// Open login modal
-  handleModalOpen = () => {
-    this.setState((prevState) => {
-       return{
-          modalOpen: !prevState.modalOpen
-       }
-    })
-  }
-// Collapsable navbar when page is narrowed
-  onClick() {
-    this.setState({
-      collapse: !this.state.collapse
-    });
-  }
+  
 
   render() {
     return (
       <div>
         <header>
-          <Router>
-            <MDBNavbar color="green" dark expand="md" fixed="top">  
-              <MDBNavbarBrand className="lobster" href="/">
-                  FridgeBuddy
-                  <img
-                    alt=""
-                    src={logo}
-                    className="d-inline-block"
-                  />{' '}
-                </MDBNavbarBrand>
-                <MDBNav className="justify-content-center">
-                {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
-                <MDBCollapse isOpen={this.state.collapse} navbar>
-                  <MDBNavbarNav left>
-                    <MDBNavItem active>
-                      <MDBNavLink to="#">Home</MDBNavLink>
-                    </MDBNavItem>
-                    <MDBNavItem>
-                      <MDBNavLink to="#">Features</MDBNavLink>
-                    </MDBNavItem>
-                    <MDBNavItem>
-                      <a onClick={this.handleModalOpen} className="nav-link">
-                            Log In
-                        </a>
-                    </MDBNavItem>
-                  </MDBNavbarNav>
-                </MDBCollapse>
-              </MDBNav>
-            </MDBNavbar>
-          </Router>
+          
           <MDBContainer style={{paddingTop: '15rem', paddingLeft: '10rem', paddingRight: '10rem'}}  className="text-black text-center" >
               <MDBRow className="mx-auto my-auto text-center">
                 <MDBCol size="6">
@@ -160,10 +109,7 @@ class FullPageIntroWithFixedNavbar extends React.Component {
             </MDBRow>
           </MDBContainer>
         </main>
-        <LoginModal
-           modalOpen={this.state.modalOpen}
-           handleModalOpen={this.handleModalOpen}
-        />
+        
       </div>
     );
   }
