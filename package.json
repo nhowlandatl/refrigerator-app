@@ -11,14 +11,26 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
+    "connect-ensure-login": "^0.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-flash": "0.0.2",
+    "express-session": "^1.17.1",
     "mdbreact": "^4.27.0",
+    "method-override": "^3.0.0",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-local": "^1.0.0",
     "pg": "^8.3.0",
     "pg-hstore": "^2.3.3",
     "react": "^16.13.1",
     "react-bootstrap": "^1.2.1",
     "react-dom": "^16.13.1",
+    "react-google-login": "^5.1.21",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "sequelize": "^6.3.3"
@@ -44,6 +56,6 @@
       "last 1 safari version"
     ]
   },
+  "proxy": "http://localhost:3001"
   "proxy": "http://localhost:5000",
-  "type": "module"
 }
