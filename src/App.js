@@ -5,6 +5,11 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNavbar';
 import Dashboard from './components/Dashboard';
 import NavbarFixed from './components/NavbarFixed';
+import MyFoodItem from './components/MyFoodItem';
+import SearchForm from './components/SearchForm';
+import GroceryItem from './components/GroceryItem';
+import GroceryItemInfo from './components/GroceryItemInfo';
+import GroceryItemResults from './components/GroceryItemResults';
 // import LoginModal from './components/LoginModal' 
 
 function App() {
@@ -15,7 +20,13 @@ function App() {
         <NavbarFixed/>
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
         <Route path="/dashboard" component={Dashboard} />
-        <FullPageIntroWithFixedNavbar/> 
+        <Route 
+          path="/SearchForm"
+          component={SearchForm} />
+        <MyFoodItem/>
+        <GroceryItem/>
+        <GroceryItemInfo/>
+        <GroceryItemResults/>
       </BrowserRouter>
     </div>
   );

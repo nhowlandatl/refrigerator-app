@@ -9,3 +9,7 @@
   text-align: left;
   font-size: 3em;
 }
+
+.center {
+  justify-content: center;
+}
