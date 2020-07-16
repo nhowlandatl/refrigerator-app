@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Login from './components/login';
+// import Login from './components/login';
+// import Fridge from './components/Fridge';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import FullPageIntroWithFixedNavbar from './components/FullPageIntroWithFixedNavbar';
 import Dashboard from './components/Dashboard';
@@ -15,7 +16,8 @@ import GroceryItemResults from './components/GroceryItemResults';
 function App() {
   return (
     <div className="App">
-      <Login />
+      {/* <Fridge />
+      <Login /> */}
       <BrowserRouter>
         <NavbarFixed/>
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
