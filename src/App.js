@@ -11,6 +11,7 @@ import SearchForm from './components/SearchForm';
 import GroceryItem from './components/GroceryItem';
 import GroceryItemInfo from './components/GroceryItemInfo';
 import GroceryItemResults from './components/GroceryItemResults';
+import AddItems from './components/AddItems';
 // import LoginModal from './components/LoginModal' 
 
 function App() {
@@ -25,6 +26,9 @@ function App() {
         <Route 
           path="/SearchForm"
           component={SearchForm} />
+        <Route 
+          path="/addItems"
+          component={AddItems} />
         <MyFoodItem/>
         <GroceryItem/>
         <GroceryItemInfo/>

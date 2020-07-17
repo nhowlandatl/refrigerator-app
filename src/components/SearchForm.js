@@ -8,11 +8,22 @@ class SearchForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      // apiResponse: ""
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  // //Handling API call
+  // callAPI() {
+  //   fetch("http://localhost:5001/apicall")
+  //       .then(res => res.text())
+  //       .then(res => this.setState({ apiResponse: res }));
+  // }
+  // componentDidMount() {
+  //     this.callAPI();
+  // }
 
 // Ingredient list maps to Redux store
   handleChange(event) {    
@@ -54,8 +65,8 @@ class SearchForm extends Component {
               type="text"
               id="defaultFormRegisterPasswordEx4"
               className="form-control"
-              name="ingredient"
-              placeholder="Your ingredient"
+              name="food item"
+              placeholder="search here"
               required
               >
               <MDBBtn color="green" className="m-1 px-3 py-2" type="submit">Search for food item</MDBBtn>
