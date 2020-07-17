@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
-import RegisterModal from './RegisterModal';
+import RegisterModal from './RegisterModal'; 
+import LoginModal from './LoginModal'
 import logo from './assets/fridge_with_open_door_80px.png';
 
 export class NavbarFixed extends Component {
@@ -9,16 +10,25 @@ export class NavbarFixed extends Component {
         this.state = {
           collapse: false,
           isWideEnough: false,
-          modalOpen: false
+          modalOpen: false,
+          modalLoginOpen: false
         };
         this.onClick = this.onClick.bind(this); 
       }
-    // Open login modal
+    // Open register modal
       handleModalOpen = () => {
         this.setState((prevState) => {
            return{
               modalOpen: !prevState.modalOpen
            }
+        })
+      }
+    // Open login modal
+      handleModalLoginOpen = () => {
+        this.setState((prevState) => {
+          return{
+              modalLoginOpen: !prevState.modalLoginOpen
+          }
         })
       }
     // Collapsable navbar when page is narrowed
@@ -56,13 +66,22 @@ export class NavbarFixed extends Component {
                         Register
                       </a>
                     </MDBNavItem>
+                    <MDBNavItem>
+                      <a onClick={this.handleModalLoginOpen} className="nav-link">
+                        Login
+                      </a>
+                    </MDBNavItem>
                   </MDBNavbarNav>
                 </MDBCollapse>
               </MDBNav>
             </MDBNavbar>
             <RegisterModal
-           modalOpen={this.state.modalOpen}
+           modalOpen={this.state.modalOpen} 
            handleModalOpen={this.handleModalOpen}
+            />
+            <LoginModal
+           modalLoginOpen={this.state.modalLoginOpen}
+           handleModalLoginOpen={this.handleModalLoginOpen}
             />
             </div>
         )

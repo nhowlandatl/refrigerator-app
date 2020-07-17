@@ -13,6 +13,7 @@ import GroceryItemInfo from './components/GroceryItemInfo';
 import GroceryItemResults from './components/GroceryItemResults';
 import AddItems from './components/AddItems';
 // import LoginModal from './components/LoginModal' 
+// import PrivateRoute from './components/PrivateRoute' Still working on this
 
 function App() {
   return (

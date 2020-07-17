@@ -18,6 +18,7 @@ const initialState = {
   recipeString: '',
   recipeInfo: '',
   fridgeItems: [{}],
+  isAuth: ''
 }
 
 // Write functions for your reducer here
