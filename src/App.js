@@ -11,6 +11,7 @@ import SearchForm from './components/SearchForm';
 import GroceryItem from './components/GroceryItem';
 import GroceryItemInfo from './components/GroceryItemInfo';
 import GroceryItemResults from './components/GroceryItemResults';
+// import PrivateRoute from './components/PrivateRoute' Still working on this
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <BrowserRouter>
         <NavbarFixed/>
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
-        <Route exact path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" component={Dashboard} />
         <Route 
           path="/SearchForm"
           component={SearchForm} />

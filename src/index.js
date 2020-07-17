@@ -16,7 +16,8 @@ const initialState = {
   recipes: [{}],
   ingredients: [],
   recipeString: '',
-  recipeInfo: ''
+  recipeInfo: '',
+  isAuth: ''
 }
 
 // Write functions for your reducer here
@@ -57,6 +58,11 @@ function reducer(state = initialState, action) {
         return {
           ...state,
           ingredients: state.ingredients.filter(ingredient => ingredient !== action.payload)
+        }
+    case 'IS_AUTH':
+        return {
+          ...state,
+          isAuth: state.isAuth = action.payload
         }
   default:
     return state;

@@ -4,16 +4,25 @@ import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { MDBBtn } from 'mdbreact'; 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import ReactDOM from 'react-dom'
+import { Provider, useDispatch, useStore } from "react-redux"; // redux way for hooks
+import ReactDOM from 'react-dom' 
 
 // Using react hooks here to pass in the open/close status for this modal
-// Rename to RegisterModal later
 
 // Take in open/close toggle prop from main page
 const LoginModal = (props) => { 
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
    const history = useHistory();
+   const dispatch = useDispatch(); //redux dispatch actions
+   const store = useStore();
+   //  dispatch the auth state
+   const userAuth = (sessionTrue) => {
+      console.log(sessionTrue); // this is the JWT session 
+      dispatch({ type: 'IS_AUTH', payload: sessionTrue })
+      console.log(store);
+   }
+   
    // validate if an email address with @ symbol and password is input; else popup error
    function validateForm() {
       return email.length > 0 && password.length > 0;
@@ -41,12 +50,17 @@ const LoginModal = (props) => {
             email: email,
             password: password
          }).then(res => {
-            history.push('/SearchForm') 
+            // set the JWT token to local storage (might not need this step)
+            localStorage.setItem('token', res.data.token)
+            // Set the JWT token to a variable
+            let authToken = localStorage.token
+            // Send the auth token to redux function, setting auth status to true
+            userAuth(authToken) 
+            // console.log(localStorage.token) // using local instead of Redux for now 
+            history.push('/SearchForm')
          })
-         
-         // what now? automatically authenticate? redirect to login page?
    }  
-   
+
    // Show the login div when "Log In" is closed on nav bar
    return (
       <div>

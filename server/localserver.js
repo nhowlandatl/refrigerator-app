@@ -151,7 +151,8 @@ app.post('/login', (req, res) => {
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token
+              token: token,
+              email: email
             });
           }
         );
@@ -163,6 +164,11 @@ app.post('/login', (req, res) => {
     });
   });
 });
+
+// Protected route(s)
+app.get('/SearchForm', passport.authenticate('jwt', { session: false }), function(req, res) {
+  res.json({ msg: 'Congrats! You are seeing this because you are authorized'});}
+);
 
 // Not setup yet
 // app.get('/logout',
