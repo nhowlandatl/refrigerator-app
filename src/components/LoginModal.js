@@ -26,19 +26,23 @@ const LoginModal = (props) => {
       setPassword(e.target.value)
    }
 
-   // Hit the backend to validate info/check if user exists, then redirect to dashboard
-   // Needs to be an axios.post using what was collected here
+   // Hit the backend to register or check if user already exists, then redirect to login
    async function handleSubmit(event) {
       event.preventDefault();
       console.log(email)
       console.log(password)
       // this could retrieve a user object from the login, and send that to your backend. Have redux status of "isLoggedIn = true" -> then save the user info to redux store. 
       // Need to have passport session... 
-      axios.post('/register', {
-         email: email,
-         password: password
-      })
-   }
+      axios
+         .post('/register', {
+            email: email,
+            password: password
+         }).then(res => {
+            console.log ('I see you on server side')
+         })
+         
+         // what now? automatically authenticate? redirect to login page?
+   }  
 
    // async function googleSubmit() {
    //    axios.get('auth/google')

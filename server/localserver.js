@@ -1,24 +1,27 @@
 require('dotenv').config();
-const express = require("express");
+const express = require('express');
 const app = express();
-const passport = require("passport");
+const passport = require('passport');
+const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy; // local passport strategy
 const db = require('../models'); // database
 const flash = require('express-flash');
-const expressSession = require('express-session')
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+const expressSession = require('express-session');
 const cors = require('cors');
+const bodyParser = require('body-parser'); 
+const logger = require('morgan'); // for logging purposes
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // Cors
 const corsOptions = {
-    credentials: true,
-  };
+  origin: 'http://localhost:5000'
+}; 
 
 app.use(cors(corsOptions));
 
-
-app.use(require('body-parser').urlencoded({ extended: true }));
-
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use(passport.initialize())	 
 app.use(passport.session())		 
@@ -27,12 +30,12 @@ passport.serializeUser(function(user, cb) {
     cb(null, user.id);
   });
   
-  passport.deserializeUser(function(id, cb) {
-    db.users.findById(id, function (err, user) {
-      if (err) { return cb(err); }
-      cb(null, user);
-    });
+passport.deserializeUser(function(id, cb) {
+  db.users.findById(id, function (err, user) {
+    if (err) { return cb(err); }
+    cb(null, user);
   });
+});
 
 // Local strategy
 passport.use(new LocalStrategy(
@@ -65,20 +68,8 @@ function checkNotAuthenticated(req, res, next) {
     // return res.redirect('/dashboard')
     console.log('hello')
 	}
-	// next() 
+	next() 
 };
-
-// placeholder 
-//   passport.use(new LocalStrategy(
-//     function(email, password, cb) {
-//       db.users.findOrCreate(email, function (err, user) {
-//         if (err) { return cb(err); }
-//         if (!user) { return cb(null, false); }
-//         if (!user.password != password) { return cb(null, false); }
-//         return cb(null, user);
-//       });
-//     }
-//   ));
   
 // Routes
 // Login for existing user
@@ -88,25 +79,26 @@ app.post('/login',
     res.redirect('/');
   });
 
-// Register for new user
-  app.post('/register', checkNotAuthenticated, async (req, res) => {
-	try {
-		const hashedPassword = await bcrypt.hash(req.body.password, 10) //includes await since we are using async
-        db.users.create({
-          // username: req.body.name,
-          email: req.body.email,
-			    password: hashedPassword,
-        })
-        .then(newUser => {
-        console.log(`New user ${newUser.email}, with id ${newUser.password} has been created.`);
-        // res.redirect('/login')//If everthing is correct, redirect user to login page to continue loggin in 
-        }).catch(e => {
-            res.render('register', {error: 'This email already has a user account.'})
-        })
-    } catch {
-        res.redirect('/register') //If not correct, send user back to register page
+// Working register button. Need to setup the redirects and login page.
+app.post('/register', checkNotAuthenticated, async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10) //includes await since we are using async 
+      db.users.create({
+        email: req.body.email,
+        password: hashedPassword
+      })
+      .then(newUser => {
+      console.log(`New user ${newUser.email}, with id ${newUser.password} has been created.`);
+      res.redirect('/login')//If everthing is correct, redirect user to login page to continue loggin in
+      res.send("hello this is a response")
+      }).catch(e => {
+          res.render('register', {error: 'This email already has a user account.'})
+      })
+    } 
+    catch {
+      res.redirect('/register') //If not correct, send user back to register page
     }
-});
+  });
 
 // Not setup yet
 app.get('/logout',
@@ -123,6 +115,6 @@ app.get('/profile',
   });
 
 // Hosting
-app.listen(3001, () => {
+app.listen(5001, () => {
     console.log('Hello master');
 })

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
-import LoginModal from './LoginModal';
+import RegisterModal from './RegisterModal';
 import logo from './assets/fridge_with_open_door_80px.png';
 
 export class NavbarFixed extends Component {
@@ -30,9 +30,9 @@ export class NavbarFixed extends Component {
     render() {
         return (
             <div>
-                <MDBNavbar color="indigo" dark expand="md" fixed="top" className="justify-content-center">  
+                <MDBNavbar color="green" dark expand="md" fixed="top">  
               <MDBNav>
-              <MDBNavbarBrand href="/">
+              <MDBNavbarBrand className="lobster" href="/">FridgeBuddy
                   <img
                     alt=""
                     src={logo}
@@ -43,10 +43,13 @@ export class NavbarFixed extends Component {
                 <MDBCollapse isOpen={this.state.collapse} navbar>
                   <MDBNavbarNav left>
                     <MDBNavItem active>
-                      <MDBNavLink to="#">Home</MDBNavLink>
+                      <MDBNavLink to="/">Home</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
-                      <MDBNavLink to="#">Features</MDBNavLink>
+                      <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
+                    </MDBNavItem>
+                    <MDBNavItem>
+                      <MDBNavLink to="/MyFridge">My Fridge</MDBNavLink>
                     </MDBNavItem>
                     <MDBNavItem>
                       <a onClick={this.handleModalOpen} className="nav-link">
@@ -57,7 +60,7 @@ export class NavbarFixed extends Component {
                 </MDBCollapse>
               </MDBNav>
             </MDBNavbar>
-            <LoginModal
+            <RegisterModal
            modalOpen={this.state.modalOpen}
            handleModalOpen={this.handleModalOpen}
             />
