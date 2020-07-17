@@ -16,7 +16,8 @@ class SearchForm extends Component {
 
 // Ingredient list maps to Redux store
   handleChange(event) {    
-    this.setState({value: event.target.value});  
+    this.setState({value: event.target.value});
+    console.log(this.props.isAuth)  
   }
 // Kick off add ingredient function on submit
   handleSubmit(event) {
@@ -80,7 +81,8 @@ class SearchForm extends Component {
 
 function mapStateToProps(state) {
   return {
-    ingredients: state.ingredients
+    ingredients: state.ingredients,
+    isAuth: state.isAuth
   }
 }
 

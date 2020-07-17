@@ -11,7 +11,7 @@ import SearchForm from './components/SearchForm';
 import GroceryItem from './components/GroceryItem';
 import GroceryItemInfo from './components/GroceryItemInfo';
 import GroceryItemResults from './components/GroceryItemResults';
-// import LoginModal from './components/LoginModal' 
+// import PrivateRoute from './components/PrivateRoute' Still working on this
 
 function App() {
   return (
