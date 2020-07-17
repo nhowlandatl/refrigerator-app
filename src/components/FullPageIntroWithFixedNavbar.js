@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './assets/fridge_with_open_door_80px.png';
 import fridge from './assets/fridge-QKKKFUJ.jpg';
 import feature1 from './assets/cutlery_64px.png';
 import feature2 from './assets/mobile_64px.png';
@@ -7,20 +6,16 @@ import feature3 from './assets/ingredients_80px.png';
 import recipeFeature from './assets/recipe-feature.jpg';
 import notificationFeature from './assets/notification-feature.jpg';
 import foodWasteFeature from './assets/food-waste-feature.jpg';
-import LoginModal from './LoginModal';
 import './FullPageIntroWithFixedNavbar.css';
 
 import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 class FullPageIntroWithFixedNavbar extends React.Component {
-  
-
   render() {
     return (
       <div>
         <header>
-          
           <MDBContainer style={{paddingTop: '15rem', paddingLeft: '10rem', paddingRight: '10rem'}}  className="text-black text-center" >
               <MDBRow className="mx-auto my-auto text-center">
                 <MDBCol size="6">

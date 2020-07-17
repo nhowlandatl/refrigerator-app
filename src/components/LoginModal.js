@@ -3,6 +3,9 @@ import Modal from 'react-bootstrap/Modal';
 import { FormGroup, FormControl, FormLabel } from 'react-bootstrap';
 import { MDBBtn } from 'mdbreact'; 
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
+import ReactDOM from 'react-dom'
+
 // Using react hooks here to pass in the open/close status for this modal
 // Rename to RegisterModal later
 
@@ -10,7 +13,7 @@ import axios from 'axios';
 const LoginModal = (props) => { 
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
-
+   const history = useHistory();
    // validate if an email address with @ symbol and password is input; else popup error
    function validateForm() {
       return email.length > 0 && password.length > 0;
@@ -34,33 +37,23 @@ const LoginModal = (props) => {
       // this could retrieve a user object from the login, and send that to your backend. Have redux status of "isLoggedIn = true" -> then save the user info to redux store. 
       // Need to have passport session... 
       axios
-         .post('/register', {
+         .post('/login', {
             email: email,
             password: password
          }).then(res => {
-            console.log ('I see you on server side')
+            history.push('/SearchForm') 
          })
          
          // what now? automatically authenticate? redirect to login page?
    }  
-
-   // async function googleSubmit() {
-   //    axios.get('auth/google')
-   //    .then(function (response) {
-   //      console.log(response);
-   //    })
-   //    .catch(function (error) {
-   //      console.log(error);
-   //    });
-   // }
    
    // Show the login div when "Log In" is closed on nav bar
    return (
       <div>
-         <Modal show={props.modalOpen} onHide={props.handleModalOpen}>
+         <Modal show={props.modalLoginOpen} onHide={props.handleModalLoginOpen}>
          <form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-               <Modal.Title>Register</Modal.Title>
+               <Modal.Title>Login</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                <FormGroup controlId="email" bsSize="large">
@@ -86,9 +79,9 @@ const LoginModal = (props) => {
             <Modal.Footer>
                {/* Make this a conditional render; if something is typed in both the login/password box, show this */}
                <MDBBtn variant="primary" disabled={!validateForm()} type="submit">
-                  Login
+                  Log on
                </MDBBtn>
-               <MDBBtn variant="danger" onClick={props.handleModalOpen}>
+               <MDBBtn variant="danger" onClick={props.handleModalLoginOpen}>
                   Cancel
                </MDBBtn>
             </Modal.Footer>
