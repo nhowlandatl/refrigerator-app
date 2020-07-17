@@ -7,15 +7,76 @@ import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
+// Redux store setup
+const initialState = {
+  value: '',
+  recipes: [{}],
+  ingredients: [],
+  recipeString: '',
+  recipeInfo: ''
+}
 
+// Write functions for your reducer here
+function reducer(state = initialState, action) {
+  switch(action.type) {
+    case 'GET_RECIPE':
+      return {
+        ...state,
+        recipes: action.payload
+      }
+    case 'ADD_INGREDIENT':
+      return {
+        ...state,
+        ingredients: state.ingredients.concat(action.payload)
+      }
+      // Reset the screen to default state
+    case 'RESET_ITEM': 
+      return {
+        ...state,
+        ingredients: initialState.ingredients
+      }
+    case 'RESET_RECIPES':
+      return {
+        ...state,
+        recipes: initialState.recipes
+      }
+    case 'RECIPE_INFO':
+        return {
+          ...state,
+          recipeInfo: action.payload
+      }
+    case 'RECIPE_INFO_CLEAR':
+        return {
+          ...state,
+          recipeInfo: initialState.recipeInfo
+      }
+    case 'DELETE_INGREDIENT':
+        return {
+          ...state,
+          ingredients: state.ingredients.filter(ingredient => ingredient !== action.payload)
+        }
+  default:
+    return state;
+  }
+}
+
+// Reducer store
+const store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
+    <Provider store={store}>
+      <App/>
+    </Provider>  
   </React.StrictMode>,
   document.getElementById('root')
 );
+
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
