@@ -7,7 +7,7 @@
 .pnp.js
 .env
 .npm
-**/node_modules
+node_modules/
 # testing
 /coverage
 
