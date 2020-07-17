@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { Button } from 'react-bootstrap'; 
-import { MDBCard, MDBContainer, MDBRow, MDBCol } from 'mdbreact';
+import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBBtn } from 'mdbreact';
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -14,20 +12,18 @@ class GroceryItemResults extends Component {
   }
   render() { 
   // Create each ingredient card
-  const recipes = this.props.recipes;
+  const items = this.props.recipes;
     return (
       <MDBContainer>
         <MDBRow>
-            {recipes.map(recipe => {
-              // Axios button function to get recipe info based on recipe ID
+            {items.map(item => {
               return (
                 <MDBCol size="3" className='justify-content-center'>
                   <MDBCard>
-                    {recipe.title}
-                    <img src={recipe.image}/>
-                    {this.props.recipes.length > 1 &&
-                      // Conditionally generate Recipe info button after recipe titles area rendered
-                      <Button variant="outline-green" onClick={() => this.handleRecipe(recipe.id)}>Get recipe details</Button>
+                    {item.title}
+                    <img src={item.image}/>
+                    {this.props.recipes.length > 1 && 
+                    <MDBBtn onClick={() => {this.props.addToFridge(item)}}>Add to Fridge</MDBBtn>
                     }
                   </MDBCard>
                 </MDBCol>
@@ -47,26 +43,7 @@ class GroceryItemResults extends Component {
     this.props.clearRecipes(); 
     event.preventDefault();
   }
-  // Get recipe info from API and pass to RecipeInfo component for modal rendering
-  handleRecipe = id => {
-    return axios({
-      "method":"GET",
-      "url": `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${id}/information`,
-      "headers":{
-      "content-type":"application/octet-stream",
-      "x-rapidapi-host":"spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      "x-rapidapi-key":"40cb3a8377mshdada20219265609p14adc3jsn41c73db521e2",
-      "useQueryString":true
-      }
-      })
-      .then((response)=>{
-        this.props.getRecipeInfo(response.data)
-        console.log(this.props.recipeInfo)
-      })
-      .catch((error)=>{
-        console.log(error)
-      })         
-  }
+
 }
   
   function mapStateToProps(state) {
@@ -87,6 +64,9 @@ class GroceryItemResults extends Component {
       },
       clearRecipes: function() {
         dispatch({type: 'RESET_RECIPES'})
+      },
+      addToFridge: function(itemInfo) {
+        dispatch({type: 'ADD_ITEM_TO_FRIDGE', payload: itemInfo})
       }
     }
   }

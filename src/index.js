@@ -14,9 +14,10 @@ import { Provider } from 'react-redux';
 const initialState = {
   value: '',
   recipes: [{}],
-  ingredients: [],
+  items: [],
   recipeString: '',
   recipeInfo: '',
+  fridgeItems: [{}],
   isAuth: ''
 }
 
@@ -26,44 +27,45 @@ function reducer(state = initialState, action) {
     case 'GET_RECIPE':
       return {
         ...state,
-        recipes: action.payload
+        recipes: action.payload,
+        items: initialState.items
       }
     case 'ADD_INGREDIENT':
       return {
         ...state,
-        ingredients: state.ingredients.concat(action.payload)
+        items: state.items.concat(action.payload)
       }
       // Reset the screen to default state
     case 'RESET_ITEM': 
       return {
         ...state,
-        ingredients: initialState.ingredients
+        items: initialState.items
       }
-    case 'RESET_RECIPES':
-      return {
-        ...state,
-        recipes: initialState.recipes
-      }
-    case 'RECIPE_INFO':
-        return {
-          ...state,
-          recipeInfo: action.payload
-      }
-    case 'RECIPE_INFO_CLEAR':
-        return {
-          ...state,
-          recipeInfo: initialState.recipeInfo
-      }
+    // case 'RESET_RECIPES':
+    //   return {
+    //     ...state,
+    //     recipes: initialState.recipes
+    //   }
+    // case 'RECIPE_INFO':
+    //   return {
+    //     ...state,
+    //     recipeInfo: action.payload
+    //   }
+    // case 'RECIPE_INFO_CLEAR':
+    //   return {
+    //     ...state,
+    //     recipeInfo: initialState.recipeInfo
+    //   }
     case 'DELETE_INGREDIENT':
-        return {
-          ...state,
-          ingredients: state.ingredients.filter(ingredient => ingredient !== action.payload)
-        }
-    case 'IS_AUTH':
-        return {
-          ...state,
-          isAuth: state.isAuth = action.payload
-        }
+      return {
+      ...state,
+      items: state.items.filter(ingredient => ingredient !== action.payload)
+      }
+    case 'ADD_ITEM_TO_FRIDGE':
+      return {
+      ...state,
+      fridgeItems: action.payload
+      }
   default:
     return state;
   }
@@ -71,6 +73,10 @@ function reducer(state = initialState, action) {
 
 // Reducer store
 const store = createStore(reducer);
+
+store.subscribe(() => {
+  console.log("Store changed!", store.getState())
+})
 
 ReactDOM.render(
   <React.StrictMode>
