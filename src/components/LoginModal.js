@@ -37,8 +37,12 @@ const LoginModal = (props) => {
          .post('/register', {
             email: email,
             password: password
+         }).then(res => {
+            console.log ('I see you on server side')
          })
-   }
+         
+         // what now? automatically authenticate? redirect to login page?
+   }  
 
    // async function googleSubmit() {
    //    axios.get('auth/google')

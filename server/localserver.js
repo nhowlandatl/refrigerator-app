@@ -13,17 +13,11 @@ const logger = require('morgan'); // for logging purposes
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // Cors
-// const corsOptions = {
-//     origin: 'http://localhost:3000',
-//     credentials: true
-//   };
+const corsOptions = {
+  origin: 'http://localhost:5000'
+}; 
 
-// app.use(cors(corsOptions));
-
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true
-}));
+app.use(cors(corsOptions));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -95,7 +89,8 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
       })
       .then(newUser => {
       console.log(`New user ${newUser.email}, with id ${newUser.password} has been created.`);
-      // res.redirect('/login')//If everthing is correct, redirect user to login page to continue loggin in 
+      res.redirect('/login')//If everthing is correct, redirect user to login page to continue loggin in
+      res.send("hello this is a response")
       }).catch(e => {
           res.render('register', {error: 'This email already has a user account.'})
       })
@@ -120,6 +115,6 @@ app.get('/profile',
   });
 
 // Hosting
-app.listen(3001, () => {
+app.listen(5001, () => {
     console.log('Hello master');
 })
