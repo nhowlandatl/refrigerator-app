@@ -114,6 +114,23 @@ app.get('/profile',
     res.render('profile', { user: req.user });
   });
 
+  app.get('/products', (req, res) =>
+{
+    //const queryInput = 'meat'
+    axios(
+        `https://api.spoonacular.com/food/products/search?query=pizza&apiKey=5c87fc7501454e29ad5a56bb45d581bd`
+    )
+        .then((response) =>
+        {
+            res.send(response.data.products[ 0 ])
+            //console.log(response.data)
+        })
+        .catch((error) =>
+        {
+            console.log(error)
+        })
+});
+
 // Hosting
 app.listen(5001, () => {
     console.log('Hello master');
