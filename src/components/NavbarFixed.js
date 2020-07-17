@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
-import LoginModal from './LoginModal';
+import RegisterModal from './RegisterModal';
 import logo from './assets/fridge_with_open_door_80px.png';
 
 export class NavbarFixed extends Component {
@@ -60,7 +60,7 @@ export class NavbarFixed extends Component {
                 </MDBCollapse>
               </MDBNav>
             </MDBNavbar>
-            <LoginModal
+            <RegisterModal
            modalOpen={this.state.modalOpen}
            handleModalOpen={this.handleModalOpen}
             />

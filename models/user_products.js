@@ -113,6 +113,6 @@ module.exports = sequelize => {
     comment: "",
     indexes: []
   };
-  const UserProductsModel = sequelize.define("user_products_model", attributes, options);
+  const UserProductsModel = sequelize.define("user_products", attributes, options);
   return UserProductsModel;
 };

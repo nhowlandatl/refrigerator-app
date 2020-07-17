@@ -120,6 +120,6 @@ module.exports = sequelize => {
     indexes: [],
     timestamps: false
   };
-  const UsersModel = sequelize.define("users_model", attributes, options);
+  const UsersModel = sequelize.define("users", attributes, options);
   return UsersModel;
 };
