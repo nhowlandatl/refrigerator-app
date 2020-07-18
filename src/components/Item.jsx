@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 // import Button from '@material-ui/core/Button';
 
+//Props image, name, 
+
 export class Item extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
-        this.state={
+        this.state = {
             items: {
                 0: {
                     image: "https://baconmockup.com/160/160/",
@@ -55,22 +57,22 @@ export class Item extends Component {
         return (
             <div className="categoryItems">
                 <div className="individualItems">
-                    <img src={this.state.items[0].image} alt="food"/>
-                    <br/>
+                    <img src={this.state.items[0].image} alt="food" />
+                    <br />
                     <span id="itemName">{this.state.items[0].itemName}</span>
-                    <br/>
+                    <br />
                     <span id="expDateSoon">Exp: {this.state.items[0].expDate}</span>
-                    <br/>
+                    <br />
                     <button>Remove</button>
                     {/* <Button variant="contained" color="primary">Remove</Button> */}
                 </div>
                 <div className="individualItems">
-                    <img src={this.state.items[1].image} alt="food"/>
-                    <br/>
+                    <img src={this.state.items[1].image} alt="food" />
+                    <br />
                     <span id="itemName">{this.state.items[1].itemName}</span>
-                    <br/>
+                    <br />
                     <span id="expDateSoon">Exp: {this.state.items[1].expDate}</span>
-                    <br/>
+                    <br />
                     <button>Remove</button>
                     {/* <Button variant="contained" color="primary">Remove</Button> */}
                 </div>

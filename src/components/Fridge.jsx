@@ -6,6 +6,7 @@ import Avatar from '@material-ui/core/Avatar';
 //Import React components
 import Item from './Item';
 import AddItems from './AddItems';
+import axiosBearer from '../utils/axiosBearer';
 
 //Working on a Dark Mode
 // function toggleDarkMode() {
@@ -17,16 +18,25 @@ import AddItems from './AddItems';
 function handleClick(e) {
     e.preventDefault();
     console.log('The link was clicked.');
-  }
+}
 
 export class Fridge extends Component {
-    // constructor(props) {
-    //     super(props);
-	// }
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: []
+        }
+    }
+    componentDidMount() {
+        axiosBearer('/userItems').then(res => {
+            console.log(res.data)
+            this.setState({ items: res.data })
+        })
+    }
     render() {
         return (
             <div id="dashContainer">
-{/* Left menu */}
+                {/* Left menu */}
                 <div id="sideBar">
                     {/* <button onClick={() => toggleDarkMode()}>Toggle dark mode</button> */}
                     <h1 id="appName">FridgeBuddy</h1>
@@ -37,11 +47,11 @@ export class Fridge extends Component {
                         {/* <a href="..."><li>Get Recipes</li></a> */}
                     </ul>
                 </div>
-{/* Main Container */}
+                {/* Main Container */}
                 <div id="fridgeContainer">
-{/* Top Div with search bar and optional login info */}
+                    {/* Top Div with search bar and optional login info */}
                     <div id="topDiv">
-                    <AddItems/>
+                        <AddItems />
                         <div id="searchBar">
                             <Input></Input>
                             <Button variant="contained" color="secondary">Search Your Fridge</Button>
@@ -51,21 +61,21 @@ export class Fridge extends Component {
                             <Avatar></Avatar>
                         </div>
                     </div>
-{/* Expiring Soon Section */}
-                <h3 className="itemHeader" style={{color: "red"}}>Expiring Soon:</h3>
+                    {/* Expiring Soon Section */}
+                    <h3 className="itemHeader" style={{ color: "red" }}>Expiring Soon:</h3>
                     <div id="expiringSoon">
                         <Item />
                     </div>
-{/* Optional Category Options */}
-                <h3 className="itemHeader">Produce:</h3>
+                    {/* Optional Category Options */}
+                    <h3 className="itemHeader">Produce:</h3>
                     <div className="categoryItems">
                         <Item />
                     </div>
-{/* Optional Category Options */}
-                <h3 className="itemHeader">Dairy:</h3>
-                        <div className="categoryItems">
-                        <Item/>
-                        </div>
+                    {/* Optional Category Options */}
+                    <h3 className="itemHeader">Dairy:</h3>
+                    <div className="categoryItems">
+                        <Item />
+                    </div>
                 </div>
             </div>
         )
