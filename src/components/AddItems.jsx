@@ -1,34 +1,34 @@
-import React, {useState} from 'react';
-import Button from '@material-ui/core/Button';
+import React, { Component } from 'react'
 
-function AddItems() {
-    
-    const [modalState, setModalState] = useState(false);
+export class AddItems extends Component {
+    constructor(props){
+        super(props);
+        this.state = { apiResponse: ""}
+    };
 
-    const toggleModalState = () => {
-        setModalState(!modalState)
+    callAPI() {
+        fetch("http://localhost:5001/apicall")
+            .then(res => res.text())
+            .then(res => this.setState({ apiResponse: res }));
     }
 
-    return (
-        <div style={{textAlign: "center"}}>
-    <Button variant="contained" color="primary" onClick={() => toggleModalState()}>Add Items to Fridge</Button>
-            <div className={`modalBackground modalShowing-${modalState}`}>
-              <div className="modalInner">
-                <div className="modalContent">
-                    <button onClick={() => toggleModalState()}>Exit</button>
-                    {/* Search Box to search for items */}
-                    <h3>Search grocery items to add to your fridge</h3>
-                    <form>
-                        <label>
-                            <input type="text" name="name" />
-                        </label>
-                        <input type="submit" value="Search" />
-                    </form>
-                </div>
-              </div>
+    componentDidMount() {
+        this.callAPI();
+    }
+
+    render() {
+        return (
+            <div>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <p className="App-intro">;{this.state.apiResponse}</p>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default AddItems
+

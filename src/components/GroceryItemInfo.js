@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button } from 'react-bootstrap'; 
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+// import { Button } from 'react-bootstrap'; 
+import ReactHtmlParser from 'react-html-parser';
 import { MDBIcon, MDBBtn, MDBModal, MDBModalHeader } from 'mdbreact';
 
 class GroceryItemInfo extends Component {
@@ -43,8 +43,6 @@ class GroceryItemInfo extends Component {
                         <br></br>
                         <a href={this.props.recipeInfo.sourceUrl}>Get detailed cooking instructions here!</a>
                     </MDBModal>
-                // Generate Recipe info if get recipe info is clicked
-                // Want to add an "X" button here to close the recipe info
                 }
             </div>
         )
