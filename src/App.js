@@ -12,6 +12,7 @@ import GroceryItem from './components/GroceryItem';
 import GroceryItemInfo from './components/GroceryItemInfo';
 import GroceryItemResults from './components/GroceryItemResults';
 import AddItems from './components/AddItems';
+import AboutUs from './components/AboutUs';
 // import LoginModal from './components/LoginModal' 
 // import PrivateRoute from './components/PrivateRoute' Still working on this
 
@@ -21,19 +22,22 @@ function App() {
       {/* <Fridge />
       <Login /> */}
       <BrowserRouter>
-        <NavbarFixed/>
+        <NavbarFixed />
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
         <Route path="/dashboard" component={Dashboard} />
-        <Route 
+        <Route
           path="/SearchForm"
           component={SearchForm} />
-        <Route 
+        <Route
           path="/addItems"
           component={AddItems} />
-        <MyFoodItem/>
-        <GroceryItem/>
-        <GroceryItemInfo/>
-        <GroceryItemResults/>
+        <Route
+          path="/AboutUs"
+          component={AboutUs} />
+        <MyFoodItem />
+        <GroceryItem />
+        <GroceryItemInfo />
+        <GroceryItemResults />
       </BrowserRouter>
     </div>
   );
