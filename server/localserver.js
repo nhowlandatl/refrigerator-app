@@ -55,9 +55,6 @@ passport.use(new LocalStrategy(
         email: email
       }
       .then(user => {
-        if (err) {
-          return cb(err);
-        }
         if (!user) {
           return cb(null, false);
         }
@@ -66,7 +63,9 @@ passport.use(new LocalStrategy(
         }
         return cb(null, user);
       })
-    });
+    }).catch(error => {
+      return cb(error)
+    })
   }
 ));
 
