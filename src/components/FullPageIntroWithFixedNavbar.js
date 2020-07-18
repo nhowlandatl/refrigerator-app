@@ -8,8 +8,8 @@ import notificationFeature from './assets/notification-feature.jpg';
 import foodWasteFeature from './assets/food-waste-feature.jpg';
 import './FullPageIntroWithFixedNavbar.css';
 
-import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink, MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
+// import { BrowserRouter as Router } from 'react-router-dom';
 
 class FullPageIntroWithFixedNavbar extends React.Component {
   render() {

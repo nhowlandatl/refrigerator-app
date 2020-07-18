@@ -11,7 +11,7 @@ class MyFoodItem extends Component {
   }
     render() { 
         // Create each ingredient card
-        let ingredientCard = this.props.ingredients.map(ingredient => {
+        let ingredientCard = this.props.items.map(ingredient => {
             return (
                 <MDBCol className="d-inline border border-dark">
                 {ingredient}
@@ -21,7 +21,7 @@ class MyFoodItem extends Component {
                 </MDBCol>
             )
         })
-      // Display all the ingredients inside a card deck
+      // Display all the items inside a card deck
         return (
                 <div>
                     <MDBContainer className="mt-5">
@@ -39,7 +39,7 @@ class MyFoodItem extends Component {
 
   function mapStateToProps(state) {
     return {
-      ingredients: state.ingredients 
+      items: state.items 
     }
   }
 
