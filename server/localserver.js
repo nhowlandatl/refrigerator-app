@@ -152,7 +152,8 @@ app.post('/login', (req, res) => {
             res.json({
               success: true,
               token: token,
-              email: email
+              email: email,
+              id: user.user_id
             });
           }
         );
@@ -170,6 +171,16 @@ app.get('/SearchForm', passport.authenticate('jwt', { session: false }), functio
   res.json({ msg: 'Congrats! You are seeing this because you are authorized'});}
 );
 
+// app.post('/addItem', (req, res) => {
+//   db.user_products.findById({
+
+//   })
+//   db.user_products.create({
+//     extra_field1: req.body.product,
+//    id: req.body.id
+//   })
+// }
+
 // Not setup yet
 // app.get('/logout',
 //   function(req, res){
@@ -184,7 +195,28 @@ app.get('/SearchForm', passport.authenticate('jwt', { session: false }), functio
 //     res.render('profile', { user: req.user });
 //   });
 
+//====AXIOS CALL TO TRY TO ACCESS THE SPOONACULAR API FROM THE BACKEND. NOT BEING USED RIGHT NOW, SAVING FOR A LATER DATE
+  // const axios = require('axios');
+
+  // app.get('/apicall', (req, res) =>
+  // {
+  //     //const queryInput = 'meat'
+  //     axios(
+  //         `https://api.spoonacular.com/food/products/search?query=pizza&apiKey=5c87fc7501454e29ad5a56bb45d581bd`
+  //     )
+  
+  //         .then((response) =>
+  //         {
+  //             res.send(response.data.products)
+  //             //console.log(response.data)
+  //         })
+  //         .catch((error) =>
+  //         {
+  //             console.log(error)
+  //         })
+  // })
+
 // Hosting
 app.listen(5001, () => {
-    console.log('Hello master');
+    console.log(`App is listening on port 5001`);
 })
