@@ -33,36 +33,25 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-passport.serializeUser(function (user, cb) {
-  console.log(user)
-  cb(null, user.id);
-});
 
-passport.deserializeUser(function (id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, user);
-  });
-});
 
 // Local passport strategy
 passport.use(new LocalStrategy(
   function (email, password, cb) {
-    db.users.findOrCreate({
+    console.log({ email, password })
+    db.user.findOrCreate({
       where: {
         email: email
       }
-      .then(user => {
-        if (!user) {
-          return cb(null, false);
-        }
-        if (!user.password != password) {
-          return cb(null, false);
-        }
-        return cb(null, user);
-      })
+        .then(user => {
+          if (!user) {
+            return cb(null, false);
+          }
+          if (!user.password != password) {
+            return cb(null, false);
+          }
+          return cb(null, user);
+        })
     }).catch(error => {
       return cb(error)
     })
@@ -78,7 +67,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = process.env.SECRET;
 
 passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
-  db.users.findOne({
+  db.user.findOne({
     id: jwt_payload.id
   }, function (err, user) {
     if (err) {
@@ -92,6 +81,20 @@ passport.use(new JwtStrategy(opts, function (jwt_payload, done) {
     }
   });
 }));
+
+passport.serializeUser(function (user, cb) {
+  console.log(user)
+  cb(null, user.id);
+});
+
+passport.deserializeUser(function (id, cb) {
+  db.users.findById(id, function (err, user) {
+    if (err) {
+      return cb(err);
+    }
+    cb(null, user);
+  });
+});
 
 // initialize passport
 app.use(passport.initialize())
@@ -118,14 +121,15 @@ app.post('/register', checkNotAuthenticated, async (req, res) => {
   try {
     // Encrypt the password
     const hashedPassword = await bcrypt.hash(req.body.password, 10) //includes await since we are using async 
-    db.users.create({
-        email: req.body.email,
-        password: hashedPassword
-      })
+    db.user.create({
+      email: req.body.email,
+      password: hashedPassword
+    })
       .then(newUser => {
         console.log(`New user ${newUser.email}, with id ${newUser.password} has been created.`);
         // res.redirect('/dashboard')//If everthing is correct, redirect user to login page or dashboard to continue
       }).catch(e => {
+        console.log(e)
         res.json({
           error: 'This email already has a user account.'
         })
@@ -140,12 +144,13 @@ app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password; // Find user by email
   console.log(email);
-  db.users.findOne({
-      where: {
-        email: email
-      }
-    })
+  db.user.findOne({
+    where: {
+      email: email
+    }
+  })
     .then(user => {
+      console.log(user)
       // Check if user exists
       if (!user) {
         return res.status(404).json({
@@ -165,8 +170,8 @@ app.post('/login', (req, res) => {
           jwt.sign(
             payload,
             opts.secretOrKey, {
-              expiresIn: 31556926 // 1 year in seconds
-            },
+            expiresIn: 31556926 // 1 year in seconds
+          },
             (err, token) => {
               res.json({
                 success: true,
@@ -185,8 +190,34 @@ app.post('/login', (req, res) => {
         }
       });
     });
-});
+})
 
+app.get('/login', (req, res) => {
+  res.send('Sorry wrong password')
+})
+
+
+app.use(
+  (req, res, next) => {
+    const token = req.headers['authorization'].split(' ')[1] || null
+    console.log(token.split(' ')[1])
+    //If we find a token in the request authorization header we will verify and continue the request, by calling next()
+    if (token) {
+      const userInfo = jwt.verify(token, process.env.SECRET)
+      return db.user.findOne({ user_id: userInfo.id }).then(user => {
+        if (!user) {
+          return res.redirect('/login')
+        }
+        req.user = user
+        next()
+      })
+    } else {
+      //No token found so they are redirected to login.
+      res.status(501).send('Unauthorized')
+    }
+  }
+)
+// app.get('/token', passport.authenticate('jwt', { session: false }))
 // Protected route(s)
 app.get('/SearchForm', passport.authenticate('jwt', {
   session: false
@@ -197,35 +228,17 @@ app.get('/SearchForm', passport.authenticate('jwt', {
 });
 
 app.post('/addItem', (req, res) => {
-  passport.authenticate('jwt', {
-    session: false
-  }, (err, user, info) => {
-    if (err) {
-      console.log(err)
-    }
-    if (info !== undefined) {
-      console.log(info.message);
-      res.send(info.message)
-    } else {
-      const userId = user.user_id
-      db.user_products.create({
-          extra_field1: req.body.item,
-          user_id: userId
-        })
-        .then(product => {
-          res.json({
-            message: "product added to database",
-            product
-          })
-        })
-        .catch(err => {
-          res.json({
-            message: "product not added"
-          })
-        })
-    }
+  const { user_id } = req.user
+  db.user_products.create({ ...req.body, user_id }).then(res => {
+    console.log(res)
   })
-  console.log(req.user)
+})
+
+app.get('/userItems', async (req, res) => {
+  const { user_id } = req.user
+  const user = await db.user.findOne({ user_id })
+  const products = await user.getProducts({ raw: true })
+  res.json(products)
 })
 
 

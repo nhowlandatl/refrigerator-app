@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
-import axios from "axios";
+import axiosWithAuth from '../utils/axiosBearer'
 
 class GroceryItemResults extends Component {
   constructor(props) {
@@ -13,18 +13,17 @@ class GroceryItemResults extends Component {
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
   // We could consider refactoring to redux thunk middleware
   SaveToFridge = (item) => {
-    axios({
-      method: "post",
-      url: "/addItem",
-      data: { item },
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ` + localStorage.getItem("token"),
-      },
-    }).then((res) => {
+    // debugger
+    const product = {
+      product_id: item.id,
+      product_image: item.image,
+      product_name: item.title
+    }
+    axiosWithAuth('/addItem', product, 'POST').then((res) => {
       console.log(res.data);
       this.props.addToFridge(item);
-    });
+    })
+
   };
 
   render() {

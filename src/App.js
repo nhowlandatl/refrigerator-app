@@ -13,6 +13,7 @@ import GroceryItemInfo from './components/GroceryItemInfo';
 import GroceryItemResults from './components/GroceryItemResults';
 import AddItems from './components/AddItems';
 import AboutUs from './components/AboutUs';
+import Fridge from './components/Fridge';
 // import LoginModal from './components/LoginModal' 
 // import PrivateRoute from './components/PrivateRoute' Still working on this
 
@@ -34,6 +35,9 @@ function App() {
         <Route
           path="/AboutUs"
           component={AboutUs} />
+        <Route
+          path="/MyFridge"
+          component={Fridge} />
         <MyFoodItem />
         <GroceryItem />
         <GroceryItemInfo />

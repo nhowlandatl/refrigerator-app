@@ -1,19 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 */.env
+.env
 
 # dependencies
 node_modules/
 /.pnp
 .pnp.js
-<<<<<<< HEAD
 .env
 .npm
 **/node_modules
 node_modules/
-=======
-
-.npm
->>>>>>> master
 # testing
 /coverage
 
