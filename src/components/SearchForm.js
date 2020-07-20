@@ -99,9 +99,6 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getRecipe: function(recipes) {
-      dispatch({type: 'GET_RECIPE', payload: recipes})
-    },
     addIngredient: function(ingredient) {
       dispatch({type: 'ADD_INGREDIENT', payload: ingredient})
     }
