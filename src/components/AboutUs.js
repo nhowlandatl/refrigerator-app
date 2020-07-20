@@ -6,7 +6,8 @@ import zach from './assets/zach.jpeg'
 import shankar from './assets/shankar.jpeg'
 import './AboutUs.css';
 
-function AboutUs() {
+function AboutUs()
+{
   return (
     <div className="AboutUs">
       <header className="team-section">
@@ -14,7 +15,8 @@ function AboutUs() {
           <div class="row">
             <div class="section-title">
               <h1>Fridge Buddies</h1>
-              <p>We're professional developers looking for oppurtunities to excel in the world of Technology.</p>
+              <p>We're professional software developers looking for opportunities to excel in the world of Technology. </p>
+              <p>We take business requirements and translate them into technical solutions to solve real world challenges.</p>
             </div>
           </div>
           <div class="row">
