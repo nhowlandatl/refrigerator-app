@@ -22,7 +22,6 @@ export class NavbarFixed extends Component {
       modalOpen: false,
       modalLoginOpen: false,
     };
-    this.onClick = this.onClick.bind(this);
   }
   // Open register modal
   handleModalOpen = () => {
@@ -41,7 +40,7 @@ export class NavbarFixed extends Component {
     });
   };
   // Collapsable navbar when page is narrowed
-  onClick() {
+  onClick = () => {
     this.setState({
       collapse: !this.state.collapse,
     });
@@ -74,7 +73,7 @@ export class NavbarFixed extends Component {
                 )}
                 {localStorage.token && (
                 <MDBNavItem>
-                  <MDBNavLink to="/MyFridge">My Fridge</MDBNavLink>
+                  <MDBNavLink to="/MyFridge">Your Fridge</MDBNavLink>
                 </MDBNavItem>
                 )}
                 {!localStorage.token && (

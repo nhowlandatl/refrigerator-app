@@ -7,8 +7,6 @@ class GroceryItemResults extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearRecipes = this.clearRecipes.bind(this);
   }
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
   // We could consider refactoring to redux thunk middleware
@@ -23,10 +21,7 @@ class GroceryItemResults extends Component {
       console.log(res.data);
       this.props.addToFridge(item);
     })
-
   };
-
-
   render() {
     // Create each product card
     // Each result here is called a recipe. Need to refactor later. 
@@ -59,12 +54,12 @@ class GroceryItemResults extends Component {
     );
   }
   // Clear ingredients on screen
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     this.props.clearResults();
     event.preventDefault();
   }
   // Clear recipes on screen
-  clearRecipes(event) {
+  clearRecipes = (event) => {
     this.props.clearRecipes();
     event.preventDefault();
   }

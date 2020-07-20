@@ -55,7 +55,7 @@ const LoginModal = (props) => {
         // Set the JWT token to a variable
         let authToken = localStorage.token;
         // Send the auth token to redux function, setting auth status to true. This isn't working.
-        userAuth(authToken);
+        userAuth(authToken); 
         // console.log(localStorage.token) // using local instead of Redux for now
         // Close modal
         history.push("/SearchForm");
