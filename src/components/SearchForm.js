@@ -9,29 +9,17 @@ class SearchForm extends Component {
     super(props);
     this.state = {
       value: '',
-      // apiResponse: ""
     };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  // //Handling API call
-  // callAPI() {
-  //   fetch("http://localhost:5001/apicall")
-  //       .then(res => res.text())
-  //       .then(res => this.setState({ apiResponse: res }));
-  // }
-  // componentDidMount() {
-  //     this.callAPI();
-  // }
-
 // Ingredient list maps to Redux store
-  handleChange(event) {    
+  handleChange = (event) => {    
     this.setState({value: event.target.value});
     console.log(this.props.isAuth)  
   }
 // Kick off add ingredient function on submit
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
     event.target.className += " was-validated";
     this.addIngredient(); 
@@ -77,15 +65,7 @@ class SearchForm extends Component {
               </MDBInput>
           </form>
         </MDBContainer>
-            // Initial working form input 
-            // <div>
-            //     <InputGroup className="mb-3">
-            //       <InputGroup.Prepend>
-            //         <Button variant="outline-secondary" onClick={this.handleSubmit}>Click to add ingredient</Button>
-            //       </InputGroup.Prepend>
-            //       <FormControl aria-describedby="basic-addon1" type="text" value={this.state.value} placeholder="Enter an ingredient" onChange={this.handleChange}/> 
-            //     </InputGroup>
-            // </div>
+
         )
     }
 }

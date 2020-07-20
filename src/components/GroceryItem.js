@@ -8,10 +8,10 @@ class GroceryItem extends Component {
     super(props);
     this.state = {
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-// Conditional statement: if ingredient array is populated, generate a submit recipe button
+// Conditional statement: if ingredient array is populated, generate a find items button
   render() {
     if (this.props.items.length > 0 ) {
       return (
@@ -27,7 +27,7 @@ class GroceryItem extends Component {
   }
   
   // Kick off the find recipe function on submit
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     // Convert the ingredient array into a string for Axios get request
     this.getRecipe(); 
     event.preventDefault();
