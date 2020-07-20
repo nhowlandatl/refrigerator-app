@@ -1,8 +1,17 @@
-import React, { Component } from 'react';
-import { MDBNavbar, MDBNav, MDBNavbarBrand, MDBNavbarNav, MDBNavbarToggler, MDBCollapse, MDBNavItem, MDBNavLink } from 'mdbreact';
-import RegisterModal from './RegisterModal';
-import LoginModal from './LoginModal'
-import logo from './assets/fridge_with_open_door_80px.png';
+import React, { Component } from "react";
+import {
+  MDBNavbar,
+  MDBNav,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBNavItem,
+  MDBNavLink,
+} from "mdbreact";
+import RegisterModal from "./RegisterModal";
+import LoginModal from "./LoginModal";
+import logo from "./assets/fridge_with_open_door_80px.png";
 
 export class NavbarFixed extends Component {
   constructor(props) {
@@ -11,7 +20,7 @@ export class NavbarFixed extends Component {
       collapse: false,
       isWideEnough: false,
       modalOpen: false,
-      modalLoginOpen: false
+      modalLoginOpen: false,
     };
     this.onClick = this.onClick.bind(this);
   }
@@ -19,22 +28,22 @@ export class NavbarFixed extends Component {
   handleModalOpen = () => {
     this.setState((prevState) => {
       return {
-        modalOpen: !prevState.modalOpen
-      }
-    })
-  }
+        modalOpen: !prevState.modalOpen,
+      };
+    });
+  };
   // Open login modal
   handleModalLoginOpen = () => {
     this.setState((prevState) => {
       return {
-        modalLoginOpen: !prevState.modalLoginOpen
-      }
-    })
-  }
+        modalLoginOpen: !prevState.modalLoginOpen,
+      };
+    });
+  };
   // Collapsable navbar when page is narrowed
   onClick() {
     this.setState({
-      collapse: !this.state.collapse
+      collapse: !this.state.collapse,
     });
   }
   render() {
@@ -42,14 +51,13 @@ export class NavbarFixed extends Component {
       <div>
         <MDBNavbar color="green" dark expand="md" fixed="top">
           <MDBNav>
-            <MDBNavbarBrand className="lobster" href="/">FridgeBuddy
-                  <img
-                alt=""
-                src={logo}
-                className="d-inline-block"
-              />{' '}
+            <MDBNavbarBrand className="lobster" href="/">
+              FridgeBuddy
+              <img alt="" src={logo} className="d-inline-block" />{" "}
             </MDBNavbarBrand>
-            {!this.state.isWideEnough && <MDBNavbarToggler onClick={this.onClick} />}
+            {!this.state.isWideEnough && (
+              <MDBNavbarToggler onClick={this.onClick} />
+            )}
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBNavbarNav left>
                 <MDBNavItem active>
@@ -64,15 +72,15 @@ export class NavbarFixed extends Component {
                 <MDBNavItem>
                   <a onClick={this.handleModalOpen} className="nav-link">
                     Register
-                      </a>
+                  </a>
                 </MDBNavItem>
                 <MDBNavItem>
                   <a onClick={this.handleModalLoginOpen} className="nav-link">
                     Login
-                      </a>
+                  </a>
                 </MDBNavItem>
                 <MDBNavItem>
-                  <MDBNavLink to="/AboutUs">AboutUs</MDBNavLink>
+                  <MDBNavLink to="/AboutUs">About Us</MDBNavLink>
                 </MDBNavItem>
               </MDBNavbarNav>
             </MDBCollapse>
@@ -87,8 +95,8 @@ export class NavbarFixed extends Component {
           handleModalLoginOpen={this.handleModalLoginOpen}
         />
       </div>
-    )
+    );
   }
 }
 
-export default NavbarFixed
+export default NavbarFixed;
