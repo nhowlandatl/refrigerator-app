@@ -238,13 +238,15 @@ app.get('/userItems', async (req, res) => {
   res.json(products) // return the products table for that user
 })
 
-app.get('/delete', async (req, res) => {
+app.delete('/delete', async (req, res) => {
+  const { user_id } = req.user
   console.log(req.body.id)
-  // await db.user_products.destroy({
-  //   where: {
-  //     id: req.data.item
-  //   }
-  // })
+  await db.user_products.destroy({ 
+    where: {
+      id: req.body.id,
+      user_id: user_id
+    }
+  })
 })
 
 // Not setup yet

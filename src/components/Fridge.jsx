@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-//MATERIAL UI Components below
+import { connect } from "react-redux";
+// MATERIAL UI Components below
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
-//Import React components
+// Import React components
 import Item from './Item';
 import AddItems from './AddItems';
 import axiosBearer from '../utils/axiosBearer';
+import axiosWithAuth from '../utils/axiosBearer';
 import { MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
 import { MDBBtn } from 'mdbreact';
-import axios from 'axios';
 
 //Working on a Dark Mode
 // function toggleDarkMode() {
@@ -17,11 +18,6 @@ import axios from 'axios';
 //     element.classList.toggle("dark-mode");
 //     element.style.backgroundImage = 'url("dark_mode_option2.jpg")';
 //  }
-
-function handleClick(e) {
-    e.preventDefault();
-    console.log('The link was clicked.');
-}
 
 export class Fridge extends Component {
     constructor(props) {
@@ -39,15 +35,17 @@ export class Fridge extends Component {
     }
     // Delete item from fridge
     onDelete(item) {
-        console.log(item)
-        axios
-            .delete('/delete', { 
-                id: item  
-            })
-            .then(response => {
-                console.log(response)
-            })
+        const product = {
+            id: item.id
+          }
+        axiosWithAuth('/delete', product, 'DELETE')
+        .then((res) => {
+            console.log(res.data);
+        })
+        // Need to refresh state when you delete item
+        // this.props.removeFromFridge(item); 
     }
+
     render() {
         return (
             <MDBContainer style={{paddingTop: '5rem', paddingLeft: '10rem', paddingRight: '10rem'}}>
@@ -61,7 +59,7 @@ export class Fridge extends Component {
                         <MDBCard>
                             <img src={item.product_image} alt=""/>
                             {item.product_name}
-                            <MDBBtn onClick={() => this.onDelete(item.id)}>Remove item from fridge</MDBBtn>
+                            <MDBBtn onClick={() => this.onDelete(item)}>Remove item from fridge</MDBBtn>
                         </MDBCard>
                     </MDBCol>
                     );
@@ -71,9 +69,31 @@ export class Fridge extends Component {
             
         )
     }
+
+
+    // Clear redux action to clear item from fridge
+    // removeFromFridge(event) {
+    //     this.props.removeFromFridge();
+    //     event.preventDefault();
+    // }
 }
 
-export default Fridge
+// function mapStateToProps(state) {
+//     return {
+//         recipes: state.recipes,
+//         items: state.items
+//     };
+// }
+
+// function mapDispatchToProps(dispatch) {
+//     return {
+//         removeFromFridge: function (item) {
+//         dispatch({ type: "REMOVE_ITEM_FROM_FRIDGE", payload: item });
+//         }
+//     };
+// }
+
+export default(Fridge);
 
 // {/* <div id="dashContainer">
 //                 {/* Left menu */}
