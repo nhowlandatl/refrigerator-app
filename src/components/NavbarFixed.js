@@ -13,10 +13,8 @@ import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
 import logo from "./assets/fridge_with_open_door_80px.png";
 
-export class NavbarFixed extends Component
-{
-  constructor(props)
-  {
+export class NavbarFixed extends Component {
+  constructor(props) {
     super(props);
     this.state = {
       collapse: false,
@@ -27,28 +25,23 @@ export class NavbarFixed extends Component
     this.onClick = this.onClick.bind(this);
   }
   // Open register modal
-  handleModalOpen = () =>
-  {
-    this.setState((prevState) =>
-    {
+  handleModalOpen = () => {
+    this.setState((prevState) => {
       return {
         modalOpen: !prevState.modalOpen,
       };
     });
   };
   // Open login modal
-  handleModalLoginOpen = () =>
-  {
-    this.setState((prevState) =>
-    {
+  handleModalLoginOpen = () => {
+    this.setState((prevState) => {
       return {
         modalLoginOpen: !prevState.modalLoginOpen,
       };
     });
   };
   // Collapsable navbar when page is narrowed
-  onClick()
-  {
+  onClick() {
     this.setState({
       collapse: !this.state.collapse,
     });
@@ -74,12 +67,16 @@ export class NavbarFixed extends Component
                 <MDBNavItem active>
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
+                {localStorage.token && (
                 <MDBNavItem>
                   <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
                 </MDBNavItem>
+                )}
+                {localStorage.token && (
                 <MDBNavItem>
                   <MDBNavLink to="/MyFridge">My Fridge</MDBNavLink>
                 </MDBNavItem>
+                )}
                 {!localStorage.token && (
                   <MDBNavItem>
                     <a onClick={this.handleModalOpen} className="nav-link">
@@ -101,16 +98,6 @@ export class NavbarFixed extends Component
                     </a>
                   </MDBNavItem>
                 )}
-                <MDBNavItem>
-                  <a onClick={this.handleModalOpen} className="nav-link">
-                    Register
-                      </a>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <a onClick={this.handleModalLoginOpen} className="nav-link">
-                    Login
-                      </a>
-                </MDBNavItem>
                 <MDBNavItem>
                   <MDBNavLink to="/AboutUs">About Us</MDBNavLink>
                 </MDBNavItem>

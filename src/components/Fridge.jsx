@@ -42,6 +42,10 @@ export class Fridge extends Component {
         .then((res) => {
             console.log(res.data);
         })
+        axiosBearer('/userItems').then(res => {
+            console.log(res.data)
+            this.setState({ items: res.data })
+        })
         // Need to refresh state when you delete item
         // this.props.removeFromFridge(item); 
     }
