@@ -33,8 +33,6 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-
-
 // Local passport strategy
 passport.use(new LocalStrategy(
   function (email, password, cb) {
@@ -196,7 +194,6 @@ app.get('/login', (req, res) => {
   res.send('Sorry wrong password')
 })
 
-
 app.use(
   (req, res, next) => {
     const token = req.headers['authorization'].split(' ')[1] || null
@@ -233,14 +230,22 @@ app.post('/addItem', (req, res) => {
     console.log(res)
   })
 })
-
+// Retrieve user's fridge
 app.get('/userItems', async (req, res) => {
-  const { user_id } = req.user
-  const user = await db.user.findOne({ user_id })
-  const products = await user.getProducts({ raw: true })
-  res.json(products)
+  const { user_id } = req.user // use ID of currently logged in user
+  const user = await db.user.findOne({ user_id }) // find user in DB
+  const products = await user.getProducts({ raw: true }) // reference user ID with user products table
+  res.json(products) // return the products table for that user
 })
 
+app.get('/delete', async (req, res) => {
+  console.log(req.body.id)
+  // await db.user_products.destroy({
+  //   where: {
+  //     id: req.data.item
+  //   }
+  // })
+})
 
 // Not setup yet
 // app.get('/logout',

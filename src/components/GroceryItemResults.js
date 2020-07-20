@@ -26,8 +26,10 @@ class GroceryItemResults extends Component {
 
   };
 
+
   render() {
-    // Create each ingredient card
+    // Create each product card
+    // Each result here is called a recipe. Need to refactor later. 
     const items = this.props.recipes;
     return (
       <MDBContainer>
@@ -42,6 +44,7 @@ class GroceryItemResults extends Component {
                     <MDBBtn
                       onClick={() => {
                         this.SaveToFridge(item);
+                        alert("Item was added to your fridge")
                       }}
                     >
                       Add to Fridge

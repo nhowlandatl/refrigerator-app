@@ -14,6 +14,7 @@ import { Provider } from 'react-redux';
 const initialState = {
   value: '',
   recipes: [{}],
+  products: [],
   items: [],
   recipeString: '',
   recipeInfo: '',

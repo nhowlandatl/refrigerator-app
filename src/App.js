@@ -23,11 +23,11 @@ function App() {
       {/* <Fridge />
       <Login /> */}
       <BrowserRouter>
-        <NavbarFixed />
+        <NavbarFixed/>
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
         <Route path="/dashboard" component={Dashboard} />
         <Route
-          path="/SearchForm"
+          exact path="/SearchForm"
           component={SearchForm} />
         <Route
           path="/addItems"
