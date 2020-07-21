@@ -272,7 +272,7 @@ app.delete("/delete", async (req, res) => {
 });
 
 // Hosting
-const PORT = 5001;
+const PORT = process.env.port || 5001
 app.listen(PORT, () => {
   console.log(`App is listening on port 5001`);
 });
