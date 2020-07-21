@@ -44,7 +44,7 @@ export class NavbarFixed extends Component {
     this.setState({
       collapse: !this.state.collapse,
     });
-  }
+  };
   logout() {
     localStorage.clear();
     window.location.href = "/";
@@ -67,14 +67,14 @@ export class NavbarFixed extends Component {
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
                 {localStorage.token && (
-                <MDBNavItem>
-                  <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
-                </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
+                  </MDBNavItem>
                 )}
                 {localStorage.token && (
-                <MDBNavItem>
-                  <MDBNavLink to="/MyFridge">Your Fridge</MDBNavLink>
-                </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/MyFridge">Your Fridge</MDBNavLink>
+                  </MDBNavItem>
                 )}
                 {!localStorage.token && (
                   <MDBNavItem>

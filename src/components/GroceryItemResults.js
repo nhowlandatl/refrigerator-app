@@ -1,13 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { MDBCard, MDBContainer, MDBRow, MDBCol, MDBBtn } from "mdbreact";
-import axiosWithAuth from '../utils/axiosBearer'
+import {
+  MDBCard,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBBtn,
+  MDBCardImage,
+} from "mdbreact";
+import axiosWithAuth from "../utils/axiosBearer";
 
 class GroceryItemResults extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
   // We could consider refactoring to redux thunk middleware
   SaveToFridge = (item) => {
@@ -15,37 +23,42 @@ class GroceryItemResults extends Component {
     const product = {
       product_id: item.id,
       product_image: item.image,
-      product_name: item.title
-    }
-    axiosWithAuth('/addItem', product, 'POST').then((res) => {
+      product_name: item.title,
+    };
+    axiosWithAuth("/addItem", product, "POST").then((res) => {
       console.log(res.data);
       this.props.addToFridge(item);
-    })
+    });
   };
   render() {
     // Create each product card
-    // Each result here is called a recipe. Need to refactor later. 
+    // Each result here is called a recipe. Need to refactor later.
     const items = this.props.recipes;
     return (
       <MDBContainer>
         <MDBRow>
           {items.map((item) => {
             return (
-              <MDBCol size="3" className="justify-content-center">
-                <MDBCard>
-                  {item.title}
-                  <img src={item.image} />
-                  {this.props.recipes.length > 1 && (
+              <MDBCol size="3" className="padding justify-content-center">
+                {this.props.recipes.length > 1 && (
+                  <MDBCard className="card align-items-center padding h-100">
+                    {item.title}
+                    <MDBCardImage
+                      className="img-fluid padding"
+                      src={item.image}
+                    />
                     <MDBBtn
+                      className="mt-auto"
+                      color="green"
                       onClick={() => {
                         this.SaveToFridge(item);
-                        alert("Item was added to your fridge")
+                        alert("Item was added to your fridge");
                       }}
                     >
                       Add to Fridge
                     </MDBBtn>
-                  )}
-                </MDBCard>
+                  </MDBCard>
+                )}
               </MDBCol>
             );
           })}
@@ -57,12 +70,12 @@ class GroceryItemResults extends Component {
   handleSubmit = (event) => {
     this.props.clearResults();
     event.preventDefault();
-  }
+  };
   // Clear recipes on screen
   clearRecipes = (event) => {
     this.props.clearRecipes();
     event.preventDefault();
-  }
+  };
 }
 
 function mapStateToProps(state) {

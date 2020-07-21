@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "postgres",
-    "password": "wanker",
+    "password": "postgres",
     "database": "refrigerator_app",
     "host": "localhost",
     "dialect": "postgres"

@@ -5,15 +5,18 @@
   } */
 
 @media screen and (min-width: 768px) {
-    body { padding-top: 100px; }
+  body {
+    padding-top: 100px;
+  }
 }
 
 .lobster {
-  font-family: 'Lobster', cursive;
+  font-family: "Lobster", cursive;
   text-align: left;
   font-size: 3em;
 }
 
-.center {
-  justify-content: center;
+.padding {
+  padding: 1em;
+  text-align: center;
 }
