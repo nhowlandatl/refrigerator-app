@@ -7,6 +7,7 @@ import SearchForm from "./components/SearchForm";
 import GroceryItemResults from "./components/GroceryItemResults";
 import AboutUs from "./components/AboutUs";
 import Fridge from "./components/Fridge";
+import PrivateRoute from "./components/PrivateRoute"
 
 function App() {
   return (
@@ -14,9 +15,17 @@ function App() {
       <BrowserRouter>
         <NavbarFixed />
         <Route exact path="/" component={FullPageIntroWithFixedNavbar} />
-        <Route path="/SearchForm" component={SearchForm} />
+        <PrivateRoute 
+          path="/SearchForm" 
+          component={SearchForm} 
+          exact={true}
+        />
         <Route path="/AboutUs" component={AboutUs} />
-        <Route path="/MyFridge" component={Fridge} />
+        <PrivateRoute 
+          path="/MyFridge" 
+          component={Fridge} 
+          exact={true}
+        />
         <GroceryItemResults />
       </BrowserRouter>
     </div>
