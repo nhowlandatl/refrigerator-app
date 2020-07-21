@@ -6,7 +6,7 @@
 
 @media screen and (min-width: 768px) {
   body {
-    padding-top: 100px; 
+    padding-top: 100px;
   }
 }
 
@@ -19,4 +19,8 @@
 .padding {
   padding: 1em;
   text-align: center;
+}
+
+.header-padding {
+  padding-top: 8em;
 }
