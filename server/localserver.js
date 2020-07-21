@@ -11,6 +11,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const logger = require("morgan"); // for logging purposes
 const jwt = require("jsonwebtoken");
+const path = require("path")
 
 app.use(
   require("express-session")({
@@ -19,6 +20,9 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+app.use(express.static(path.join(__dirname, '../build')))
+//app.use(express.static('../build'));
 
 // Cors
 const corsOptions = {
