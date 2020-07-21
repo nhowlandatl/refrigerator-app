@@ -22,7 +22,6 @@ export class NavbarFixed extends Component {
       modalOpen: false,
       modalLoginOpen: false,
     };
-    this.onClick = this.onClick.bind(this);
   }
   // Open register modal
   handleModalOpen = () => {
@@ -41,10 +40,14 @@ export class NavbarFixed extends Component {
     });
   };
   // Collapsable navbar when page is narrowed
-  onClick() {
+  onClick = () => {
     this.setState({
       collapse: !this.state.collapse,
     });
+  };
+  logout() {
+    localStorage.clear();
+    window.location.href = "/";
   }
   render() {
     return (
@@ -63,22 +66,37 @@ export class NavbarFixed extends Component {
                 <MDBNavItem active>
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <MDBNavLink to="/MyFridge">My Fridge</MDBNavLink>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <a onClick={this.handleModalOpen} className="nav-link">
-                    Register
-                  </a>
-                </MDBNavItem>
-                <MDBNavItem>
-                  <a onClick={this.handleModalLoginOpen} className="nav-link">
-                    Login
-                  </a>
-                </MDBNavItem>
+                {localStorage.token && (
+                  <MDBNavItem>
+                    <MDBNavLink to="/SearchForm">Add Item</MDBNavLink>
+                  </MDBNavItem>
+                )}
+                {localStorage.token && (
+                  <MDBNavItem>
+                    <MDBNavLink to="/MyFridge">Your Fridge</MDBNavLink>
+                  </MDBNavItem>
+                )}
+                {!localStorage.token && (
+                  <MDBNavItem>
+                    <a onClick={this.handleModalOpen} className="nav-link">
+                      Register
+                    </a>
+                  </MDBNavItem>
+                )}
+                {!localStorage.token && (
+                  <MDBNavItem>
+                    <a onClick={this.handleModalLoginOpen} className="nav-link">
+                      Login
+                    </a>
+                  </MDBNavItem>
+                )}
+                {localStorage.token && (
+                  <MDBNavItem>
+                    <a onClick={this.logout} className="nav-link">
+                      Log Out
+                    </a>
+                  </MDBNavItem>
+                )}
                 <MDBNavItem>
                   <MDBNavLink to="/AboutUs">About Us</MDBNavLink>
                 </MDBNavItem>

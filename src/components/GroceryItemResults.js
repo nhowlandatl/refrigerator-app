@@ -14,8 +14,6 @@ class GroceryItemResults extends Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearRecipes = this.clearRecipes.bind(this);
   }
 
   // SaveToFridge refers to saving to database. addToFridge refers to the redux action.
@@ -32,9 +30,9 @@ class GroceryItemResults extends Component {
       this.props.addToFridge(item);
     });
   };
-
   render() {
-    // Create each ingredient card
+    // Create each product card
+    // Each result here is called a recipe. Need to refactor later.
     const items = this.props.recipes;
     return (
       <MDBContainer>
@@ -54,6 +52,7 @@ class GroceryItemResults extends Component {
                       color="green"
                       onClick={() => {
                         this.SaveToFridge(item);
+                        alert("Item was added to your fridge");
                       }}
                     >
                       Add to Fridge
@@ -68,15 +67,15 @@ class GroceryItemResults extends Component {
     );
   }
   // Clear ingredients on screen
-  handleSubmit(event) {
+  handleSubmit = (event) => {
     this.props.clearResults();
     event.preventDefault();
-  }
+  };
   // Clear recipes on screen
-  clearRecipes(event) {
+  clearRecipes = (event) => {
     this.props.clearRecipes();
     event.preventDefault();
-  }
+  };
 }
 
 function mapStateToProps(state) {

@@ -145,6 +145,12 @@ app.post("/register", checkNotAuthenticated, async (req, res) => {
         res.json({
           error: "This email already has a user account.",
         });
+      })
+      .catch((e) => {
+        console.log(e);
+        res.json({
+          error: "This email already has a user account.",
+        });
       });
   } catch {
     res.redirect("/register"); //If not correct, send user back to register page
@@ -246,50 +252,27 @@ app.post("/addItem", (req, res) => {
     console.log(res);
   });
 });
-
+// Retrieve user's fridge
 app.get("/userItems", async (req, res) => {
-  const { user_id } = req.user;
-  const user = await db.user.findOne({ user_id });
-  const products = await user.getProducts({ raw: true });
-  res.json(products);
+  const { user_id } = req.user; // use ID of currently logged in user
+  const user = await db.user.findOne({ user_id }); // find user in DB
+  const products = await user.getProducts({ raw: true }); // reference user ID with user products table
+  res.json(products); // return the products table for that user
 });
 
-// Not setup yet
-// app.get('/logout',
-//   function(req, res){
-//     req.logout();
-//     res.redirect('/');
-//   });
-
-// Not setup yet
-// app.get('/profile',
-//   require('connect-ensure-login').ensureLoggedIn(),
-//   function(req, res){
-//     res.render('profile', { user: req.user });
-//   });
-
-//====AXIOS CALL TO TRY TO ACCESS THE SPOONACULAR API FROM THE BACKEND. NOT BEING USED RIGHT NOW, SAVING FOR A LATER DATE
-// const axios = require('axios');
-
-// app.get('/apicall', (req, res) =>
-// {
-//     //const queryInput = 'meat'
-//     axios(
-//         `https://api.spoonacular.com/food/products/search?query=pizza&apiKey=5c87fc7501454e29ad5a56bb45d581bd`
-//     )
-
-//         .then((response) =>
-//         {
-//             res.send(response.data.products)
-//             //console.log(response.data)
-//         })
-//         .catch((error) =>
-//         {
-//             console.log(error)
-//         })
-// })
+app.delete("/delete", async (req, res) => {
+  const { user_id } = req.user;
+  console.log(req.body.id);
+  await db.user_products.destroy({
+    where: {
+      id: req.body.id,
+      user_id: user_id,
+    },
+  });
+});
 
 // Hosting
-app.listen(5001, () => {
+const PORT = 5001;
+app.listen(PORT, () => {
   console.log(`App is listening on port 5001`);
 });
