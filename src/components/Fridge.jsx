@@ -18,6 +18,7 @@ export class Fridge extends Component {
             console.log(res.data)
             this.setState({ items: res.data })
         })
+        this.props.clearRecipes();
     }
     // Delete item from fridge
     onDelete(item) {
@@ -54,10 +55,22 @@ export class Fridge extends Component {
                 })}
                 </MDBRow>
             </MDBContainer>
-            
         )
     }
 }
 
-
-export default(Fridge); 
+function mapStateToProps(state) {
+    return {
+      recipes: state.recipes
+    };
+  }
+  
+  function mapDispatchToProps(dispatch) {
+    return {
+      clearRecipes: function () {
+        dispatch({ type: "RESET_RECIPES" });
+      }
+    }
+  }
+  
+export default connect(mapStateToProps, mapDispatchToProps)(Fridge);

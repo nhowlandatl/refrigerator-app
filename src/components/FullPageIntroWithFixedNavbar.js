@@ -7,25 +7,30 @@ import recipeFeature from './assets/recipe-feature.jpg';
 import notificationFeature from './assets/notification-feature.jpg';
 import foodWasteFeature from './assets/food-waste-feature.jpg';
 import './FullPageIntroWithFixedNavbar.css';
+import { connect } from "react-redux";
 
 import { MDBContainer, MDBCardText, MDBCard, MDBCol, MDBRow, MDBCardBody, MDBCardTitle } from 'mdbreact';
 // import { BrowserRouter as Router } from 'react-router-dom';
 
 class FullPageIntroWithFixedNavbar extends React.Component
+
 {
+  componentDidMount() {
+    this.props.clearRecipes();
+}
   render()
   {
     return (
       <div>
         <header>
-          <MDBContainer style={{ paddingTop: '15rem', paddingLeft: '10rem', paddingRight: '10rem' }} className="text-black text-center" >
+          <MDBContainer style={{ paddingTop: '8rem'}} className="text-black text-center" >
             <MDBRow className="mx-auto my-auto text-center">
-              <MDBCol size="6">
+              <MDBCol className="my-auto" xs="12" sm="12" md="6">
                 <h2>Preventing Food Waste and Saving You Money</h2>
                 <br />
                 <h5>FridgeBuddy keeps track of what's in your fridge, freezer & pantry and  makes recipe suggestions as well as send notifications to your phone reminding you when items are about to expire. </h5>
               </MDBCol>
-              <MDBCol size="6">
+              <MDBCol xs="12" sm="12" md="6">
                 <img src={fridge} className="img-fluid" alt="" />
               </MDBCol>
             </MDBRow>
@@ -113,5 +118,18 @@ class FullPageIntroWithFixedNavbar extends React.Component
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    recipes: state.recipes
+  };
+}
 
-export default FullPageIntroWithFixedNavbar;
+function mapDispatchToProps(dispatch) {
+  return {
+    clearRecipes: function () {
+      dispatch({ type: "RESET_RECIPES" });
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FullPageIntroWithFixedNavbar);
