@@ -18,7 +18,7 @@ function App() {
         <Route path="/SearchForm" component={SearchForm} />
         <Route path="/AboutUs" component={AboutUs} />
         <Route path="/MyFridge" component={Fridge} />
-        <MyFoodItem />
+        {/* <MyFoodItem />  */}
         <GroceryItemResults />
       </BrowserRouter>
     </div>

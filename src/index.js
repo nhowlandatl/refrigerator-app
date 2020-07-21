@@ -42,11 +42,11 @@ function reducer(state = initialState, action) {
         ...state,
         items: initialState.items,
       };
-    // case 'RESET_RECIPES':
-    //   return {
-    //     ...state,
-    //     recipes: initialState.recipes
-    //   }
+    case 'RESET_RECIPES':
+      return {
+        ...state,
+        recipes: initialState.recipes
+      }
     // case 'RECIPE_INFO':
     //   return {
     //     ...state,
