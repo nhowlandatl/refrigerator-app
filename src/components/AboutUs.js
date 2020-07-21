@@ -4,6 +4,16 @@ import kel from "./assets/Kel.jpeg";
 import nick from "./assets/nick.jpeg";
 import zach from "./assets/zach.jpeg";
 import shankar from "./assets/shankar.jpeg";
+import {
+  MDBNavbar,
+  MDBNav,
+  MDBNavbarBrand,
+  MDBNavbarNav,
+  MDBNavbarToggler,
+  MDBCollapse,
+  MDBNavItem,
+  MDBNavLink,
+} from "mdbreact";
 import "./AboutUs.css";
 
 function AboutUs() {
@@ -13,7 +23,7 @@ function AboutUs() {
         <div class="container">
           <div class="row">
             <div class="section-title">
-              <h1 class="lobster">Fridge Buddies</h1>
+              <h1>Fridge Buddies</h1>
               <p>
                 We're professional software developers looking for opportunities
                 to excel in the world of Technology.{" "}
@@ -66,7 +76,7 @@ function AboutUs() {
                     <p>Software Engineer</p>
                     <div class="social-links">
                       <a
-                        href="https://www.linkedin.com/in/kelvin-lester-451a682/"
+                        href="https://www.kelvinlester.com/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -98,7 +108,7 @@ function AboutUs() {
                     <p>Software Engineer</p>
                     <div class="social-links">
                       <a
-                        href="https://www.linkedin.com/in/nicholas-howland-6553b0137/"
+                        href="https://nhowlandatl.github.io/portfolio-site/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -130,7 +140,7 @@ function AboutUs() {
                     <p>Software Engineer</p>
                     <div class="social-links">
                       <a
-                        href="https://www.linkedin.com/in/zfgardner/"
+                        href="https://zgard.github.io/portfolio/"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

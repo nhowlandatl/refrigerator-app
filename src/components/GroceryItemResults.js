@@ -52,7 +52,7 @@ class GroceryItemResults extends Component {
                       color="green"
                       onClick={() => {
                         this.SaveToFridge(item);
-                        alert("Item was added to your fridge");
+                        alert("You added this item to your fridge!");
                       }}
                     >
                       Add to Fridge

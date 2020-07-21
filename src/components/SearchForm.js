@@ -17,12 +17,7 @@ class SearchForm extends Component {
   render() {
     return (
       // Enter ingredient prompt w/ empty string validation
-      <MDBContainer>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+      <MDBContainer className="header-padding">
         <h2>Search for a food item to add to your fridge!</h2>
         <form
           className="needs-validation"
