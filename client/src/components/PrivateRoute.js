@@ -5,25 +5,24 @@ import {
   Redirect
 } from 'react-router-dom'
 
-const PrivateRoute = ({ component: SearchForm, ...rest }) =>{
+const PrivateRoute = ({ component: Component, ...rest }) =>{
     return (
         <Route
         {...rest}
         render={props =>
-          !localStorage.token ? (
-            <SearchForm {...props} />
-          ) : (
-            <Redirect
+          localStorage.token 
+          ? <Component {...props} /> 
+          : <Redirect
               to={{
                 pathname: "/",
                 state: { from: props.location }
               }}
-            />
-          )
+            /> 
         }
       />
     )
 }
+
 
 export default PrivateRoute
 //

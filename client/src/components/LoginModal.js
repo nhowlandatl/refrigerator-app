@@ -1,11 +1,9 @@
 import React, { useState } from "react";
-import Modal from "react-bootstrap/Modal";
-import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
+import { FormGroup, Modal, FormControl, FormLabel } from "react-bootstrap";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { Provider, useDispatch, useStore } from "react-redux"; // redux way for hooks
-import ReactDOM from "react-dom";
 // Using react hooks here to pass in the open/close status for this modal
 
 // Take in open/close toggle prop from main page
@@ -62,7 +60,7 @@ const LoginModal = (props) => {
       })
       .catch(function (error) {
         if (error.response) {
-          alert("Email doesn't exist.");
+          alert("Email or doesn't exist.");
           // Request made and server responded
           console.log(error.response.data);
           console.log(error.response.status);

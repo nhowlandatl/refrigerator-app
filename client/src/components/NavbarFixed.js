@@ -23,6 +23,7 @@ export class NavbarFixed extends Component {
       modalLoginOpen: false,
     };
   }
+
   // Open register modal
   handleModalOpen = () => {
     this.setState((prevState) => {
