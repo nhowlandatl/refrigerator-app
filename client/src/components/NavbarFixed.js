@@ -64,7 +64,7 @@ export class NavbarFixed extends Component {
             )}
             <MDBCollapse isOpen={this.state.collapse} navbar>
               <MDBNavbarNav left>
-                <MDBNavItem active>
+                <MDBNavItem>
                   <MDBNavLink to="/">Home</MDBNavLink>
                 </MDBNavItem>
                 {localStorage.token && (
