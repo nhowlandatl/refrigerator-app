@@ -87,6 +87,7 @@ class FullPageIntroWithFixedNavbar extends React.Component {
                 <MDBCard className="padding align-items-center h-100">
                   <MDBCardImage className="img-fluid" src={feature3} alt="" />
                   <MDBCardBody>
+                    {/* add in pro feature bar at the top */}
                     <MDBCardTitle>My Recipes</MDBCardTitle>
                     <MDBCardText>
                       Like to cook? Get recipe suggestions based on items you
@@ -102,8 +103,11 @@ class FullPageIntroWithFixedNavbar extends React.Component {
           <MDBContainer className="text-center my-5">
             <MDBRow className="mx-auto my-auto" style={{ paddingTop: "3rem" }}>
               <MDBCol size="6" className="mx-auto my-auto">
-                <h2>This is really cool</h2>
-                <p>See image on right (which I need to resize)</p>
+                <h2>Find your food</h2>
+                <p>
+                  Our easy to use search makes it simple to add food to your
+                  Fridge
+                </p>
               </MDBCol>
               <MDBCol size="6">
                 <img className="img-fluid mx-auto" src={recipeFeature} alt="" />
@@ -118,14 +122,21 @@ class FullPageIntroWithFixedNavbar extends React.Component {
                 />
               </MDBCol>
               <MDBCol size="6" className="mx-auto my-auto">
-                <h2>This is also really cool</h2>
-                <p>See image on left (which I need to resize)</p>
+                <h2>Access your Fridge on the go</h2>
+                <p>
+                  Add or remove food items and see what expires next from
+                  anywhere
+                </p>
               </MDBCol>
             </MDBRow>
             <MDBRow className="mx-auto my-auto" style={{ paddingTop: "3rem" }}>
               <MDBCol size="6" className="mx-auto my-auto">
-                <h2>This is really cool</h2>
-                <p>See image on right (which I need to resize)</p>
+                <h2>Help end food waste</h2>
+                <p>
+                  40 million tons of food goes to waste in the United States
+                  every year. By using FridgeBuddy, you can make a difference
+                  and reduce the $161 billion of wasted food each year.
+                </p>
               </MDBCol>
               <MDBCol size="6">
                 <img
