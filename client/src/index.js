@@ -77,9 +77,9 @@ function reducer(state = initialState, action) {
 // Reducer store
 const store = createStore(reducer);
 
-store.subscribe(() => {
-  console.log("Store changed!", store.getState());
-});
+// store.subscribe(() => {
+//   console.log("Store changed!", store.getState());
+// });
 
 ReactDOM.render(
   <React.StrictMode>

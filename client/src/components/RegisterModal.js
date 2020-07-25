@@ -4,7 +4,7 @@ import { FormGroup, FormControl, FormLabel } from "react-bootstrap";
 import { MDBBtn } from "mdbreact";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 // Using react hooks here to pass in the open/close status for this modal
 
 // Take in open/close toggle prop from main page
@@ -45,9 +45,9 @@ const RegisterModal = (props) => {
 				if (error.response) {
 					alert("Email already exists. Please use a different email.");
 					// Request made and server responded
-					console.log(error.response.data);
-					console.log(error.response.status);
-					console.log(error.response.headers);
+					// console.log(error.response.data);
+					// console.log(error.response.status);
+					// console.log(error.response.headers);
 				} else if (error.request) {
 					// The request was made but no response was received
 					console.log(error.request);
