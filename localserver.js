@@ -258,7 +258,12 @@ app.post("/addItem", (req, res) => {
 // Retrieve user's fridge
 app.get("/userItems", async (req, res) => {
 	const { user_id } = req.user; // use ID of currently logged in user
-	const user = await db.user.findOne({ user_id }); // find user in DB
+	const user = await db.user.findOne({
+		where: {
+			user_id: user_id,
+		}
+	})
+	// ({ user_id }); // find user in DB 
 	const products = await user.getProducts({ raw: true }); // reference user ID with user products table
 	res.json(products); // return the products table for that user
 });
@@ -275,7 +280,7 @@ app.delete("/delete", async (req, res) => {
 });
 
 // Hosting
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
-	console.log(`App is listening on port 5001`);
+	console.log(`App is listening on port ${PORT}`);
 });
