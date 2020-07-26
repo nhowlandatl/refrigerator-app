@@ -26,7 +26,7 @@ export class Fridge extends Component {
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
     axiosBearer("/userItems").then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       this.setState({ items: res.data });
     });
     this.props.clearRecipes();
