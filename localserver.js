@@ -259,7 +259,7 @@ app.post("/addItem", (req, res) => {
 app.get("/userItems", async (req, res) => {
 	const { user_id } = req.user; // use ID of currently logged in user
 	console.log(user_id)
-	const user = await db.user_produts.findOne({
+	const user = await db.user.findOne({
 		where: {
 			user_id: user_id
 		}
