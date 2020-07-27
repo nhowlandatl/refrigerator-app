@@ -260,7 +260,7 @@ app.get("/userItems", async (req, res) => {
 	const { user_id } = req.user; // use ID of currently logged in user
 	const user = await db.user.findOne({
 		where: {
-			user_id: user_id,
+			user_id: user_id
 		}
 	})
 	// ({ user_id }); // find user in DB 
