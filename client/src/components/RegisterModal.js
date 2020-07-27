@@ -38,7 +38,8 @@ const RegisterModal = (props) => {
 				password: password,
 			})
 			.then((res) => {
-				history.push("/SearchForm");
+				console.log(res.message)
+				history.push("/");
 				// need to close modal after login
 			})
 			.catch(function (error) {

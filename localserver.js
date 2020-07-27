@@ -137,6 +137,9 @@ app.post("/register", async (req, res) => {
 				password: hashedPassword,
 			})
 			.then((newUser) => {
+				res.json({
+					message: `New user ${newUser.email}, with id ${newUser.password} has been created.`
+				})
 				console.log(
 					`New user ${newUser.email}, with id ${newUser.password} has been created.`
 				);
