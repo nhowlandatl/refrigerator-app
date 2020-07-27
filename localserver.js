@@ -258,7 +258,8 @@ app.post("/addItem", (req, res) => {
 // Retrieve user's fridge
 app.get("/userItems", async (req, res) => {
 	const { user_id } = req.user; // use ID of currently logged in user
-	const user = await db.user.findOne({
+	console.log(user_id)
+	const user = await db.user_produts.findOne({
 		where: {
 			user_id: user_id
 		}
