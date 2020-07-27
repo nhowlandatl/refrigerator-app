@@ -25,12 +25,17 @@ export class Fridge extends Component {
   }
   // After loading users fridge, load all their database items and render to screen
   componentDidMount() {
+    this.getFridge();
+  }
+
+  getFridge() {
     axiosBearer("/userItems").then((res) => {
       // console.log(res.data);
       this.setState({ items: res.data });
     });
     this.props.clearRecipes();
   }
+
   // Delete item from fridge
   onDelete(item) {
     const product = {
