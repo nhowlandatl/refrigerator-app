@@ -256,8 +256,8 @@ app.get("/userItems", async (req, res) => {
   const { user_id } = req.user; // use ID of currently logged in user
   console.log(user_id)
   const user = await db.user.findOne({ user_id }); // find user in DB
-  const products = await user.getProducts({ raw: true }); // reference user ID with user products table
-  res.json(products); // return the products table for that user
+  const products = await user.getProducts({ raw: true }) // reference user ID with user products table
+  .then(res.json(products)); // return the products table for that user
 });
 
 app.delete("/delete", async (req, res) => {
