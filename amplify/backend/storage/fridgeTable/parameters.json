@@ -1,0 +1,5 @@
+{
+    "tableName": "fridgeTable",
+    "partitionKeyName": "id",
+    "partitionKeyType": "S"
+}

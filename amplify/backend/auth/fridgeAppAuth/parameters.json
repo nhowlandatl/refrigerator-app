@@ -1,4 +1,6 @@
 {
+    "identityPoolName": "fridgeAppAuth_identitypool_78bb6b36",
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "fridge69d1fe76",
     "userPoolName": "fridgeAppUserPool",
     "autoVerifiedAttributes": [
@@ -34,7 +36,7 @@
     "userpoolClientLambdaRole": "fridge69d1fe76_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
     "useDefault": "manual",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "resourceName": "fridgeAppAuth",
     "usernameAttributes": [
         "email"
