@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"fridgeAppAuth": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

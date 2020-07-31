@@ -19,6 +19,8 @@
   },
   "homepage": "https://github.com/jadaquandt/refrigerator-app#readme",
   "dependencies": {
+    "@aws-amplify/ui-react": "^0.2.13",
+    "aws-amplify": "^3.0.22",
     "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
