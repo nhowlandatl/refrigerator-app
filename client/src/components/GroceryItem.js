@@ -39,6 +39,7 @@ class GroceryItem extends Component {
     // Make a string of items to pass into API get request
     let recipeString = this.props.items.join(",");
     console.log(recipeString);
+    console.log('test with hidden key')
     return axios(
       `https://api.spoonacular.com/food/products/search?query=${recipeString}&apiKey=${process.env.REACT_APP_API_KEY}&number=20`
     )

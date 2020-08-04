@@ -1,0 +1,120 @@
+{
+	"providers": {
+		"awscloudformation": {
+			"AuthRoleName": "amplify-fridgeapp2-dev-110016-authRole",
+			"UnauthRoleArn": "arn:aws:iam::411063245791:role/amplify-fridgeapp2-dev-110016-unauthRole",
+			"AuthRoleArn": "arn:aws:iam::411063245791:role/amplify-fridgeapp2-dev-110016-authRole",
+			"Region": "us-east-1",
+			"DeploymentBucketName": "amplify-fridgeapp2-dev-110016-deployment",
+			"UnauthRoleName": "amplify-fridgeapp2-dev-110016-unauthRole",
+			"StackName": "amplify-fridgeapp2-dev-110016",
+			"StackId": "arn:aws:cloudformation:us-east-1:411063245791:stack/amplify-fridgeapp2-dev-110016/8c863460-d33e-11ea-b81f-0a78092beb51",
+			"AmplifyAppId": "d2s4n4rd9cfpkt"
+		}
+	},
+	"auth": {
+		"fridgeAppAuth": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fridgeapp2-dev-110016-deployment/amplify-cfn-templates/auth/fridgeAppAuth-cloudformation-template.yml",
+				"logicalId": "authfridgeAppAuth"
+			},
+			"lastPushTimeStamp": "2020-07-31T20:05:25.729Z",
+			"output": {
+				"AppClientSecret": "pg0sd066v6k29omudf380ardt1lpk4qbbufgahnpk971s8i28g8",
+				"UserPoolId": "us-east-1_YdxV1Ktn3",
+				"AppClientIDWeb": "66egc9bh98ip3nihl2n5ujn7rt",
+				"AppClientID": "ba0ckid8cc42hiti1g6c89d6h",
+				"UserPoolName": "fridgeAppUserPool",
+				"IdentityPoolId": "us-east-1:96d017e0-5abd-4313-896a-82a7dace0e83",
+				"IdentityPoolName": "fridgeAppAuth_identitypool_78bb6b36__dev"
+			},
+			"lastPushDirHash": "FZW+7iymcig1IkSDvo4Blduif5w="
+		}
+	},
+	"storage": {
+		"fridgeTable": {
+			"service": "DynamoDB",
+			"providerPlugin": "awscloudformation",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fridgeapp2-dev-110016-deployment/amplify-cfn-templates/storage/fridgeTable-cloudformation-template.json",
+				"logicalId": "storagefridgeTable"
+			},
+			"lastPushTimeStamp": "2020-07-31T20:05:25.729Z",
+			"output": {
+				"PartitionKeyName": "id",
+				"Region": "us-east-1",
+				"Arn": "arn:aws:dynamodb:us-east-1:411063245791:table/fridgeTable-dev",
+				"StreamArn": "arn:aws:dynamodb:us-east-1:411063245791:table/fridgeTable-dev/stream/2020-07-31T20:02:36.372",
+				"PartitionKeyType": "S",
+				"Name": "fridgeTable-dev"
+			},
+			"lastPushDirHash": "04a/L+MSnk3NuQNl55cK+ThAjYM="
+		}
+	},
+	"function": {
+		"fridgeLambda": {
+			"build": true,
+			"providerPlugin": "awscloudformation",
+			"service": "Lambda",
+			"dependsOn": [
+				{
+					"category": "storage",
+					"resourceName": "fridgeTable",
+					"attributes": [
+						"Name",
+						"Arn"
+					],
+					"attributeEnvMap": {
+						"Name": "TABLE_NAME",
+						"Arn": "TABLE_ARN"
+					}
+				}
+			],
+			"lastBuildTimeStamp": "2020-07-31T20:02:20.172Z",
+			"lastPackageTimeStamp": "2020-07-31T20:02:22.291Z",
+			"distZipFilename": "fridgeLambda-6c5732756f57592b764d-build.zip",
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fridgeapp2-dev-110016-deployment/amplify-cfn-templates/function/fridgeLambda-cloudformation-template.json",
+				"logicalId": "functionfridgeLambda"
+			},
+			"lastPushTimeStamp": "2020-07-31T20:05:25.729Z",
+			"output": {
+				"Region": "us-east-1",
+				"Arn": "arn:aws:lambda:us-east-1:411063245791:function:fridgeLambda-dev",
+				"Name": "fridgeLambda-dev",
+				"LambdaExecutionRole": "fridgeapp2LambdaRole1dfcf0f2-dev"
+			},
+			"lastPushDirHash": "gXJryYauBS5WoicMjeWPPAUuiOE="
+		}
+	},
+	"api": {
+		"fridgeApi": {
+			"service": "API Gateway",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": [
+				{
+					"category": "function",
+					"resourceName": "fridgeLambda",
+					"attributes": [
+						"Name",
+						"Arn"
+					]
+				}
+			],
+			"providerMetadata": {
+				"s3TemplateURL": "https://s3.amazonaws.com/amplify-fridgeapp2-dev-110016-deployment/amplify-cfn-templates/api/fridgeApi-cloudformation-template.json",
+				"logicalId": "apifridgeApi"
+			},
+			"lastPushTimeStamp": "2020-07-31T20:05:25.729Z",
+			"output": {
+				"ApiName": "fridgeApi",
+				"RootUrl": "https://iz0zsdoo08.execute-api.us-east-1.amazonaws.com/dev",
+				"ApiId": "iz0zsdoo08"
+			},
+			"lastPushDirHash": "OeI2vYjNLLdw9ovrjd2tt8Yx8NU="
+		}
+	}
+}
