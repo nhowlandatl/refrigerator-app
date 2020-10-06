@@ -59,9 +59,28 @@ class SearchForm extends Component {
     // Make a string of items to pass into API get request
     let recipeString = this.state.value;
     console.log(recipeString);
-    return axios(
-      `https://api.spoonacular.com/food/products/search?query=${recipeString}&${process.env.REACT_APP_API_KEY}&number=20`
-    )
+    axios({
+      "method":"GET",
+      "url":"https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/products/search",
+      "headers":{
+      "content-type":"application/octet-stream",
+      "x-rapidapi-host":"spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      "x-rapidapi-key": `${process.env.REACT_APP_API_KEY}`,
+      "useQueryString":true
+      },"params":{
+      "offset":"0",
+      "number":"20",
+      "maxCalories":"5000",
+      "minProtein":"0",
+      "maxProtein":"100",
+      "minFat":"0",
+      "maxFat":"100",
+      "minCarbs":"0",
+      "maxCarbs":"100",
+      "minCalories":"0",
+      "query": `${recipeString}`
+      }
+      })
       .then((response) => {
         // Dispatches the action to redux
         console.log(response.data.products);
