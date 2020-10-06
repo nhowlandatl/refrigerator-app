@@ -60,7 +60,7 @@ class SearchForm extends Component {
     let recipeString = this.state.value;
     console.log(recipeString);
     return axios(
-      `https://api.spoonacular.com/food/products/search?query=${recipeString}&apiKey=5c87fc7501454e29ad5a56bb45d581bd&number=20`
+      `https://api.spoonacular.com/food/products/search?query=${recipeString}&${process.env.REACT_APP_API_KEY}&number=20`
     )
       .then((response) => {
         // Dispatches the action to redux
