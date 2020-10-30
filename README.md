@@ -1,3 +1,9 @@
+1) Back-end logic in /server/localserver.js
+2) Front-end components in client/src/
+3) Database tables and schema managed with Sequelize in /migrations/
+4) Database Sequelize models located in /models/
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
